@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Struktur Kelas Mahakam</title>
+    <title>Web Kelas Mahakam</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -208,8 +208,8 @@
         <section>
             <h2>Struktur Organisasi Kelas</h2>
             <ul>
-                <li><strong>Ketua Kelas:</strong> <span id="ketua" class="editable" onclick="editNama('ketua', 'Ketua Kelas')">Klik untuk ganti</span></li>
-                <li><strong>Wakil Ketua Kelas:</strong> <span id="wakil" class="editable" onclick="editNama('wakil', 'Wakil Ketua Kelas')">Klik untuk ganti</span></li>
+                <li><strong>Sekretaris:</strong> Farrel</li>
+                <li><strong>Sekretaris:</strong> Azima</li>
                 <li><strong>Sekretaris:</strong> Adel</li>
                 <li><strong>Kebersihan:</strong> Alita</li>
                 <li><strong>Bendahara:</strong> Sahla</li>
@@ -254,46 +254,5 @@
             <p>Dibuat untuk Kelas Mahakam &copy; 2025 - 2026. Semua Pasti Ada Jalannya!</p>
         </footer>
     </div>
-
-    <script>
-        // Fungsi untuk edit nama
-        function editNama(id, jabatan) {
-            let namaBaru = prompt(`Masukkan nama baru untuk ${jabatan}:`, document.getElementById(id).textContent);
-            if (namaBaru && namaBaru.trim() !== '') {
-                document.getElementById(id).textContent = namaBaru.trim();
-                // Simpan ke localStorage
-                localStorage.setItem(id, namaBaru.trim());
-                // Update style: hilangkan italic dan warna placeholder jika sudah diisi
-                const elem = document.getElementById(id);
-                elem.style.color = 'var(--text-primary)';
-                elem.style.fontStyle = 'normal';
-                elem.style.background = 'rgba(255,255,255,0.05)';
-                elem.style.border = '1px solid var(--accent)';
-            } else {
-                alert('Nama tidak boleh kosong!'); // Validasi sederhana
-            }
-        }
-
-        // Load data dari localStorage saat halaman load
-        window.onload = function() {
-            const ketua = localStorage.getItem('ketua');
-            if (ketua) {
-                document.getElementById('ketua').textContent = ketua;
-                document.getElementById('ketua').style.color = 'var(--text-primary)';
-                document.getElementById('ketua').style.fontStyle = 'normal';
-                document.getElementById('ketua').style.background = 'rgba(255,255,255,0.05)';
-                document.getElementById('ketua').style.border = '1px solid var(--accent)';
-            }
-
-            const wakil = localStorage.getItem('wakil');
-            if (wakil) {
-                document.getElementById('wakil').textContent = wakil;
-                document.getElementById('wakil').style.color = 'var(--text-primary)';
-                document.getElementById('wakil').style.fontStyle = 'normal';
-                document.getElementById('wakil').style.background = 'rgba(255,255,255,0.05)';
-                document.getElementById('wakil').style.border = '1px solid var(--accent)';
-            }
-        };
-    </script>
 </body>
 </html>
