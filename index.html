@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Web Kelas Mahakam</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-primary: #0f0f0f;
@@ -75,6 +76,42 @@
             background-clip: text;
         }
 
+        /* Nav Bar untuk Auto-Scroll Tombol */
+        .nav-scroll {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            background: rgba(58, 58, 58, 0.7);
+            padding: 10px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+        }
+        .scroll-btn {
+            background: rgba(74, 74, 74, 0.8);
+            color: var(--text-secondary);
+            border: none;
+            padding: 10px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: 500;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .scroll-btn:hover, .scroll-btn.active {
+            background: var(--card-bg);
+            color: var(--text-primary);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-color: var(--accent);
+        }
+
         section {
             background: var(--card-bg);
             backdrop-filter: blur(15px);
@@ -137,6 +174,16 @@
             border-left-color: var(--text-secondary);
         }
 
+        /* Styling Gambar di Section */
+        ul img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            display: block;
+            margin: 0 auto;
+        }
+
         .editable {
             color: #888;
             font-style: italic;
@@ -190,6 +237,9 @@
             h1 { font-size: 2.2em; letter-spacing: 1px; }
             section { padding: 20px; }
             .container { gap: 20px; }
+            .nav-scroll { flex-direction: column; align-items: center; gap: 8px; padding: 15px; }
+            .scroll-btn { width: 100%; max-width: 200px; justify-content: center; }
+            ul img { width: 100%; height: auto; }
         }
     </style>
 </head>
@@ -200,26 +250,47 @@
             <p>Selamat datang di halaman kelas kami!</p>
         </header>
 
-        <section>
+        <nav class="nav-scroll">
+            <button class="scroll-btn active" onclick="scrollToSection('wali-kelas')">
+                <i class="fas fa-user-tie"></i> Wali Kelas
+            </button>
+            <button class="scroll-btn" onclick="scrollToSection('struktur')">
+                <i class="fas fa-sitemap"></i> Struktur
+            </button>
+            <button class="scroll-btn" onclick="scrollToSection('jadwal')">
+                <i class="fas fa-calendar-alt"></i> Jadwal
+            </button>
+            <button class="scroll-btn" onclick="scrollToSection('murid')">
+                <i class="fas fa-user-friends"></i> Murid
+            </button>
+            <button class="scroll-btn" onclick="scrollToSection('sekolah')">
+                <i class="fas fa-school"></i> Info Sekolah
+            </button>
+            <button class="scroll-btn" onclick="scrollToSection('bio')">
+                <i class="fas fa-info-circle"></i> Bio
+            </button>
+        </nav>
+        
+        <section id="wali-kelas">
             <h2>Wali Kelas</h2>
             <p>Miss Yeni</p>
         </section>
 
-        <section>
+        <section id="struktur">
             <h2>Struktur Organisasi Kelas</h2>
             <ul>
                 <img src="https://i.imgur.com/63nId5T.jpeg" alt="Gambar Struktur Kelas" width="544" height="844">
             </ul>
         </section>
 
-        <section>
+        <section id="jadwal">
             <h2>Jadwal Pelajaran</h2>
             <ul>
                 <img src="https://i.imgur.com/Jqc6o7E.jpeg" alt="Gambar Jadwal Pelajaran" width="544" height="844">
             </ul>
         </section>
 
-        <section>
+        <section id="murid">
             <h2>Murid Kelas</h2>
             <ul>
                 <li><strong></strong>Adelia Felicia</li>
@@ -246,15 +317,89 @@
             </ul>
         </section>
 
-        <section>
-            <h2>Bio Kelas Mahakam</h2>
-            <p>Mahakam Radio – Kelas yang dinamis, penuh semangat, dan selalu siap berbagi info seru seperti radio sekolah!</p>
-            <!-- Kamu bisa tambah lebih banyak deskripsi di sini -->
+        <section id="sekolah">
+            <h2>Profil Sekolah</h2>
+            <p>SD Islam Bunga Bangsa (SDIBB) adalah sekolah dasar swasta Full Day School di Samarinda yang berfokus menciptakan generasi beriman, berilmu, dan berakhlak mulia melalui perpaduan kurikulum nasional, SDIBB, dan Cambridge, serta fasilitas lengkap untuk belajar dan beribadah di sekolah. 
+Informasi Umum
+Nama: SD Islam Bunga Bangsa (SDIBB)
+Status: Swasta
+Bentuk Pendidikan: SD
+Kepemilikan: Yayasan
+Lokasi: Jalan D.I. Panjaitan No. 51, Samarinda, Kalimantan Timur
+Sistem: Full Day School 
+Tujuan Pendidikan
+SDIBB bertujuan untuk membentuk anak menjadi generasi yang:
+Beriman dan berakhlak mulia
+Cerdas, kreatif, dan mandiri
+Berguna bagi agama, masyarakat, dan bangsa 
+Kurikulum & Pembelajaran
+Kurikulum Terpadu: Menggunakan gabungan kurikulum pendidikan nasional, kurikulum khas SDIBB, dan kurikulum internasional Cambridge.
+Metode Pembelajaran: Beragam dan menarik untuk mengaktifkan siswa dalam belajar.
+Fokus Keseimbangan: Menjaga keseimbangan antara pendidikan umum dan agama. 
+Fasilitas
+SDIBB dilengkapi dengan fasilitas yang mendukung aktivitas belajar, bermain, makan, dan beribadah, seperti: 
+Fasilitas belajar berkualitas
+Halaman bermain yang luas
+Layanan sekolah yang beragam </p>
         </section>
+
+        <section id="bio">
+            <h2>Bio Kelas Mahakam</h2>
+            <p>✨ Kelas Mahakam ✨
+Satu kelas, satu keluarga.
+Kami adalah kumpulan siswa yang penuh semangat, kreatif, dan kompak.
+Seperti aliran Sungai Mahakam yang besar, kami juga mengalirkan energi positif, kerja sama, dan semangat belajar tanpa henti.
+
+📚 Belajar bersama,
+😂 Tertawa bersama,
+🏆 Berjuang bersama.
+
+Kelas Mahakam – Solid, Hebat, Berprestasi!</p>
+        </section>
+
+        <nav class="nav-scroll">
+            <button class="scroll-btn active" onclick="scrollToSection('wali-kelas')">
+                <i class="fas fa-arrow-to-top"></i> Kembali Ke Atas
+            </button>
+        </nav>
 
         <footer>
             <p>Dibuat untuk Kelas Mahakam &copy; 2025 - 2026. Semua Pasti Ada Jalannya!</p>
         </footer>
     </div>
+
+    <!-- JavaScript Terpisah (untuk Auto-Scroll dan Active State) -->
+    <script>
+        // Fungsi Auto-Scroll ke Section
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                
+                // Update active state tombol
+                const buttons = document.querySelectorAll('.scroll-btn');
+                buttons.forEach(btn => btn.classList.remove('active'));
+                event.target.classList.add('active');
+            }
+        }
+
+        // Auto-detect active tombol saat scroll (opsional, biar tombol highlight otomatis)
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const scrollPos = window.scrollY + 100; // Offset sedikit
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.offsetHeight;
+                if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
+                    const activeId = section.id;
+                    const buttons = document.querySelectorAll('.scroll-btn');
+                    buttons.forEach(btn => btn.classList.remove('active'));
+                    const activeBtn = Array.from(buttons).find(btn => btn.onclick.toString().includes(activeId));
+                    if (activeBtn) activeBtn.classList.add('active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
