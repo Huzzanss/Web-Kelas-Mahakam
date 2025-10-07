@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Kelas Mahakam</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0f0f0f;
+            --bg-secondary: #1a1a2e;
+            --card-bg: rgba(42, 42, 42, 0.8);
+            --text-primary: #ffffff;
+            --text-secondary: #e0e0e0;
+            --accent: #404040;
+            --border: #2a2a2a;
+            --editable-hover: #4a4a4a;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            color: var(--text-primary);
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 20%, rgba(255,255,255,0.03) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: grid;
+            gap: 30px;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        header {
+            background: rgba(31, 31, 31, 0.9);
+            backdrop-filter: blur(10px);
+            color: var(--text-primary);
+            padding: 40px 30px;
+            border-radius: 20px;
+            margin-bottom: 0;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            border: 1px solid var(--border);
+            transition: transform 0.3s ease;
+        }
+        header:hover {
+            transform: scale(1.02);
+        }
+        h1 {
+            margin: 0 0 10px 0;
+            font-weight: 300;
+            font-size: 3em;
+            letter-spacing: 3px;
+            background: linear-gradient(45deg, var(--text-primary), var(--text-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(15px);
+            margin: 0;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        section:nth-child(2) { animation-delay: 0.1s; }
+        section:nth-child(3) { animation-delay: 0.2s; }
+        section:nth-child(4) { animation-delay: 0.3s; }
+        section:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+            border-color: var(--accent);
+        }
+
+        h2 {
+            color: var(--text-secondary);
+            font-weight: 400;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            background: rgba(58, 58, 58, 0.7);
+            margin: 15px 0;
+            padding: 18px;
+            border-radius: 12px;
+            text-align: left;
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--accent);
+            backdrop-filter: blur(5px);
+        }
+        li:hover {
+            background: rgba(74, 74, 74, 0.9);
+            transform: translateX(8px) scale(1.02);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border-left-color: var(--text-secondary);
+        }
+
+        .editable {
+            color: #888;
+            font-style: italic;
+            cursor: pointer;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            background: rgba(136, 136, 136, 0.1);
+            border: 1px dashed transparent;
+        }
+        .editable:hover {
+            background: var(--editable-hover);
+            color: var(--text-secondary);
+            border-color: var(--accent);
+            transform: scale(1.05);
+        }
+        .editable:active {
+            transform: scale(0.98);
+        }
+
+        p {
+            margin: 15px 0;
+            font-weight: 300;
+            font-size: 1.1em;
+        }
+
+        footer {
+            margin-top: 50px;
+            font-size: 14px;
+            color: #888;
+            padding: 20px;
+            background: rgba(31, 31, 31, 0.7);
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            animation: fadeIn 1s ease-out 0.4s both;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            body { padding: 10px; }
+            h1 { font-size: 2.2em; letter-spacing: 1px; }
+            section { padding: 20px; }
+            .container { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Kelas Mahakam</h1>
+            <p>Selamat datang di halaman struktur organisasi kelas kami!</p>
+        </header>
+
+        <section>
+            <h2>Wali Kelas</h2>
+            <p>Miss Yeni</p>
+        </section>
+
+        <section>
+            <h2>Struktur Organisasi Kelas</h2>
+            <ul>
+                <li><strong>Ketua Kelas:</strong> <span id="ketua" class="editable" onclick="editNama('ketua', 'Ketua Kelas')">Klik untuk ganti</span></li>
+                <li><strong>Wakil Ketua Kelas:</strong> <span id="wakil" class="editable" onclick="editNama('wakil', 'Wakil Ketua Kelas')">Klik untuk ganti</span></li>
+                <li><strong>Sekretaris:</strong> Adel</li>
+                <li><strong>Kebersihan:</strong> Alita</li>
+                <li><strong>Bendahara:</strong> Sahla</li>
+                <li><strong>Keamanan:</strong> Gio</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Murid Kelas</h2>
+            <ul>
+                <li><strong></strong>Adelia Felicia</li>
+                <li><strong></strong>Afiqah Humayra Arresky</li>
+                <li><strong></strong>Alexandra Shavira Kaysa</li>
+                <li><strong></strong>Alisya Zella Naura Saputro</li>
+                <li><strong></strong>Alita Admiral</li>
+                <li><strong></strong>Aqillah Khayyirah</li>
+                <li><strong></strong>Azima Zafeera Khairiya</li>
+                <li><strong></strong>Azka Aisy Muhammad Firdaus</li>
+                <li><strong></strong>Farrel Azka Firlana</li>
+                <li><strong></strong>Fattah Altaf Qusyairi</li>
+                <li><strong></strong>Giovanny Syahputra</li>
+                <li><strong></strong>Gusti Muhammad An-Nafis</li>
+                <li><strong></strong>Hilmi Muhammad Nidho Mudhin</li>
+                <li><strong></strong>Khalika Ismatullah Assahla</li>
+                <li><strong></strong>Muhammad Abdurrahman Dzaki</li>
+                <li><strong></strong>Muhammad El Junot Razqal</li>
+                <li><strong></strong>Muhammad Fahri Ardani</li>
+                <li><strong></strong>Muhammad Hafidz Setiadi</li>
+                <li><strong></strong>Muhammad Juna Defa Alfarizie</li>
+                <li><strong></strong>Muhammad Zharif Syatir</li>
+                <li><strong></strong>Syifa Fathiyah Zahra</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Bio Kelas Mahakam</h2>
+            <p>Mahakam Radio – Kelas yang dinamis, penuh semangat, dan selalu siap berbagi info seru seperti radio sekolah!</p>
+            <!-- Kamu bisa tambah lebih banyak deskripsi di sini -->
+        </section>
+
+        <footer>
+            <p>Dibuat untuk Kelas Mahakam &copy; 2025 - 2026. Semua Pasti Ada Jalannya!</p>
+        </footer>
+    </div>
+
+    <script>
+        // Fungsi untuk edit nama
+        function editNama(id, jabatan) {
+            let namaBaru = prompt(`Masukkan nama baru untuk ${jabatan}:`, document.getElementById(id).textContent);
+            if (namaBaru && namaBaru.trim() !== '') {
+                document.getElementById(id).textContent = namaBaru.trim();
+                // Simpan ke localStorage
+                localStorage.setItem(id, namaBaru.trim());
+                // Update style: hilangkan italic dan warna placeholder jika sudah diisi
+                const elem = document.getElementById(id);
+                elem.style.color = 'var(--text-primary)';
+                elem.style.fontStyle = 'normal';
+                elem.style.background = 'rgba(255,255,255,0.05)';
+                elem.style.border = '1px solid var(--accent)';
+            } else {
+                alert('Nama tidak boleh kosong!'); // Validasi sederhana
+            }
+        }
+
+        // Load data dari localStorage saat halaman load
+        window.onload = function() {
+            const ketua = localStorage.getItem('ketua');
+            if (ketua) {
+                document.getElementById('ketua').textContent = ketua;
+                document.getElementById('ketua').style.color = 'var(--text-primary)';
+                document.getElementById('ketua').style.fontStyle = 'normal';
+                document.getElementById('ketua').style.background = 'rgba(255,255,255,0.05)';
+                document.getElementById('ketua').style.border = '1px solid var(--accent)';
+            }
+
+            const wakil = localStorage.getItem('wakil');
+            if (wakil) {
+                document.getElementById('wakil').textContent = wakil;
+                document.getElementById('wakil').style.color = 'var(--text-primary)';
+                document.getElementById('wakil').style.fontStyle = 'normal';
+                document.getElementById('wakil').style.background = 'rgba(255,255,255,0.05)';
+                document.getElementById('wakil').style.border = '1px solid var(--accent)';
+            }
+        };
+    </script>
+</body>
+</html>
