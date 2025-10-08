@@ -184,6 +184,41 @@
         backdrop-filter: blur(10px);
         }
 
+        .murid-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+        }
+
+        .murid-card {
+        background: rgba(0, 31, 84, 0.85);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 15px;
+        text-align: center;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .murid-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.4);
+        }
+
+        .murid-card h3 {
+        color: var(--text-secondary);
+        margin: 10px 0 5px 0;
+        font-size: 1.1em;
+        }
+
+        .murid-card p {
+        font-size: 0.95em;
+        color: #fff;
+        font-weight: bold;
+        }
+
+
         @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
         @keyframes fadeInUp { from {opacity:0; transform:translateY(20px);} to {opacity:1; transform:translateY(0);} }
 
@@ -241,33 +276,118 @@
             <h2>Jadwal Pelajaran</h2>
             <ul><img src="Jadwal Pelajaran.jpg" alt="Jadwal Pelajaran"></ul>
         </section>
-        <section id="murid">
-        <h2>Murid Kelas</h2>
-        <img src="21 STUDENTS.jpg" alt="Foto Kelas">
-        <ul>
-            <li>Adelia Felicia</li>
-            <li>Afiqah Humayra Arresky</li>
-            <li>Alexandra Shavira Kaysa</li>
-            <li>Alisya Zella Naura Saputro</li>
-            <li>Alita Admiral</li>
-            <li>Aqillah Khayyirah</li>
-            <li>Azima Zafeera Khairiya</li>
-            <li>Azka Aisy Muhammad Firdaus</li>
-            <li>Farrel Azka Firlana</li>
-            <li>Fattah Altaf Qusyairi</li>
-            <li>Giovanny Syahputra</li>
-            <li>Gusti Muhammad An-Nafis</li>
-            <li>Hilmi Muhammad Nidho Mudhin</li>
-            <li>Khalika Ismatullah Assahla</li>
-            <li>Muhammad Abdurrahman Dzaki</li>
-            <li>Muhammad El Junot Razqal</li>
-            <li>Muhammad Fahri Ardani</li>
-            <li>Muhammad Hafidz Setiadi</li>
-            <li>Muhammad Juna Defa Alfarizie</li>
-            <li>Muhammad Zharif Syatir</li>
-            <li>Syifa Fathiyah Zahra</li>
-        </ul>
-        </section>
+<section id="murid">
+  <h2>Murid Kelas</h2>
+  <div class="murid-grid">
+    
+    <div class="murid-card">
+      <h3>Adelia Felicia</h3>
+      <p>Pendiam Tapi Kalau Sama Orang Yang Dia Kenal Dia Menjadi Extrovert.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Afiqah Humayra Arresky</h3>
+      <p>Suka Menggambar Dan Gambarannya Bagus</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Alexandra Shavira Kaysa</h3>
+      <p>Orang Yang Sangat Pendiam.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Alisya Zella Naura Saputro</h3>
+      <p>Sulit Diketahui.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Alita Admiral</h3>
+      <p>Rajin Belajar, Suka Bertanya Dan Berprestasi.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Aqillah Khayyirah</h3>
+      <p>Pintar Tapi Kurang Dikenal Di Kelas Mahakam.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Azima Zafeera Khairiya</h3>
+      <p>Teman Sahla Dan Alita.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Azka Aisy Muhammad Firdaus</h3>
+      <p>Bek Yang Suka Mengontrol Bola.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Farrel Azka Firlana</h3>
+      <p>Striker Yang Maruk</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Fattah Altaf Qusyairi</h3>
+      <p>Tendangannya keras Tapi Suka Meleset.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Giovanny Syahputra</h3>
+      <p>Salah Satu Kiper, Striker Dan Bek Yang Bagus.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Gusti Muhammad An-Nafis</h3>
+      <p>Dia Jago Kiper Striker.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Hilmi Muhammad Nidho Mudhin</h3>
+      <p>Pandai matematika, kreatif, dan suka membantu.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Khalika Ismatullah Assahla</h3>
+      <p>Pintar Tapi Kurang Teliti.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad Abdurrahman Dzaki</h3>
+      <p>Pintar, Mudah Menghafal, Jago Jadi Kiper.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad El Junot Razqal</h3>
+      <p>Walaupun Berbadan Besar Tapi Dia Suka Bermain Bola Kalau Diajak.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad Fahri Ardani</h3>
+      <p>Dia Suka Menggambar Dan Bermain Bola.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad Hafidz Setiadi</h3>
+      <p>Suka Membuat Sesuatu Hal Yang Tidak Normal Diseusianya.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad Juna Defa Alfarizie</h3>
+      <p>Suka Bermain Bola Dan Basket.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Muhammad Zharif Syatir</h3>
+      <p>Suka Bermain Bola.</p>
+    </div>
+
+    <div class="murid-card">
+      <h3>Syifa Fathiyah Zahra</h3>
+      <p>Dia Sering Di Marahin Pak Ichal.</p>
+    </div>
+
+  </div>
+</section>
+
         <section id="sekolah">
             <h2>Profil Sekolah</h2>
             <p>SD Islam Bunga Bangsa (SDIBB) Samarinda adalah sekolah swasta berstatus yayasan di</p>
