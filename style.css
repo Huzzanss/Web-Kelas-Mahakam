@@ -12,6 +12,13 @@ body {
   color: #333;
 }
 
+/* Responsive Image */
+.responsive-img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
 /* Navbar */
 .navbar {
   position: fixed;
