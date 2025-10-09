@@ -1,0 +1,168 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Inter', sans-serif;
+  text-align: center;
+  line-height: 1.6;
+  background: #f4f4f9;
+  color: #333;
+}
+
+/* Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 61, 128, 0.95);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  z-index: 1000;
+}
+.navbar .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+.navbar .nav-links {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+}
+.navbar .nav-links li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+.navbar .nav-links li a:hover {
+  color: #ffd700;
+}
+
+/* Burger button */
+.menu-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  background: url('kelas.jpg') no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.hero-overlay {
+  text-align: center;
+  color: #fff;
+  background: #003d80 ;
+  padding: 30px;
+  border-radius: 10px;
+}
+.hero-overlay h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.hero-overlay p {
+  font-size: 1.2rem;
+}
+
+/* Container Section */
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 60px 20px;
+}
+.container h2 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2rem;
+  color: #003d80;
+}
+.container.dark {
+  background: #003d80;
+  color: #fff;
+  border-radius: 10px;
+}
+
+/* Murid Card */
+.murid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+.murid-card {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+.murid-card:hover {
+  transform: translateY(-5px);
+}
+.murid-card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: #0056b3;
+}
+.murid-card p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #003d80;
+  color: #fff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background: rgba(0, 61, 128, 0.95);
+    flex-direction: column;
+    width: 200px;
+    padding: 15px;
+    gap: 15px;
+    display: none;
+  }
+  .nav-links.active {
+    display: flex;
+  }
+  .hero-overlay h1 {
+    font-size: 2rem;
+  }
+  .hero-overlay p {
+    font-size: 1rem;
+  }
+}
+@media (max-width: 480px) {
+  .hero-overlay h1 {
+    font-size: 1.5rem;
+  }
+  .container {
+    padding: 40px 15px;
+  }
+}
