@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kelas Mahakam</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<title>Kelas Mahakam</title>
 
-  <!-- AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- CSS -->
-  <link rel="stylesheet" href="style.css">
+<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+
+<!-- LOADING -->
+<div id="loader">
+  <div class="spinner"></div>
+</div>
+
+
 <!-- NAVBAR -->
-<nav class="navbar">
+<nav class="navbar" id="navbar">
   <div class="logo">Mahakam</div>
 
   <button class="menu-toggle" id="menu-toggle">☰</button>
@@ -27,105 +32,133 @@
     <li><a href="#murid">Murid</a></li>
     <li><a href="#informasi">Informasi</a></li>
     <li><a href="#jadwal">Jadwal</a></li>
-    <li><a href="#struktur">Struktur</a></li>
   </ul>
 </nav>
 
 
+
 <!-- HERO -->
 <header class="hero">
-  <div class="hero-overlay" data-aos="fade-up">
-    <h1>Kelas Mahakam</h1>
-    <p>Selamat datang di halaman kelas kami!</p>
 
-    <img src="we-are-mahakam.jpg" alt="Foto kelas" class="hero-img">
-  </div>
+<div class="hero-content" data-aos="fade-up">
+  <h1>Kelas Mahakam</h1>
+  <p>Website resmi kelas kami — modern, kompak, dan penuh kenangan.</p>
+
+  <img src="we-are-mahakam.jpg" class="hero-img">
+</div>
+
 </header>
+
 
 
 <!-- MURID -->
 <section id="murid" class="container">
-  <h2 data-aos="fade-up">Daftar Murid</h2>
 
-  <img src="21-students.jpg" class="section-img" data-aos="zoom-in">
+<h2 data-aos="fade-up">Daftar Murid</h2>
 
-  <div class="murid-grid">
+<div class="murid-grid">
 
-    <!-- CARD -->
-    <div class="murid-card" data-aos="fade-up"><h3>Adelia Felicia</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="50"><h3>Afiqah Humayra Arresky</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="100"><h3>Alexandra Shavira Kaysa</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="150"><h3>Alisya Zella Naura Saputro</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="200"><h3>Alita Admiral</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="250"><h3>Aqillah Khayyirah</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="300"><h3>Azima Zafeera Khairiya</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="350"><h3>Azka Aisy Muhammad Firdaus</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="400"><h3>Farrel Azka Firlana</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="450"><h3>Fattah Altaf Qusyairi</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="500"><h3>Giovanny Syahputra</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="550"><h3>Gusti Muhammad An-Nafis</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="600"><h3>Hilmi Muhammad Nidho Mudhin</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="650"><h3>Khalika Ismatullah Assahla</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="700"><h3>Muhammad Abdurrahman Dzaki</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="750"><h3>Muhammad El Junot Razqal</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="800"><h3>Muhammad Fahri Ardani</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="850"><h3>Muhammad Hafidz Setiadi</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="900"><h3>Muhammad Juna Defa Alfarizie</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="950"><h3>Muhammad Zharif Syatir</h3></div>
-    <div class="murid-card" data-aos="fade-up" data-aos-delay="1000"><h3>Syifa Fathiyah Zahra</h3></div>
+<!-- CARD (pakai foto siswa kalau ada) -->
 
-  </div>
+<div class="murid-card" data-aos="fade-up">
+<img src="student.jpg">
+<h3>Adelia Felicia</h3>
+</div>
+
+<div class="murid-card" data-aos="fade-up" data-aos-delay="100">
+<img src="student.jpg">
+<h3>Afiqah Humayra</h3>
+</div>
+
+<div class="murid-card" data-aos="fade-up" data-aos-delay="200">
+<img src="student.jpg">
+<h3>Alexandra Shavira</h3>
+</div>
+
+<div class="murid-card" data-aos="fade-up" data-aos-delay="300">
+<img src="student.jpg">
+<h3>Alisya Zella</h3>
+</div>
+
+</div>
+
 </section>
 
 
-<!-- INFORMASI -->
-<section id="informasi" class="container">
-  <h2 data-aos="fade-up">Informasi Mingguan</h2>
 
-  <div class="info-card" data-aos="fade-up">
-    Bentar lagi lulus 🎓
-  </div>
+<!-- INFO -->
+<section id="informasi" class="gradient">
+
+<div class="container">
+
+<h2 data-aos="fade-up">Informasi Mingguan</h2>
+
+<div class="info-card" data-aos="zoom-in">
+🎓 Bentar lagi lulus — semoga semua sukses!
+</div>
+
+</div>
+
 </section>
+
 
 
 <!-- JADWAL -->
-<section id="jadwal" class="container dark">
-  <h2 data-aos="fade-up">Jadwal</h2>
+<section id="jadwal" class="container">
 
-  <img src="jadwal.jpg" class="section-img" data-aos="zoom-in">
+<h2 data-aos="fade-up">Jadwal</h2>
+
+<img src="jadwal.jpg" class="section-img" data-aos="zoom-in">
+
 </section>
 
-
-<!-- STRUKTUR -->
-<section id="struktur" class="container">
-  <h2 data-aos="fade-up">Struktur Kelas</h2>
-
-  <img src="struktur.jpg" class="section-img" data-aos="zoom-in">
-</section>
 
 
 <footer>
-  © 2025 Kelas Mahakam — All Rights Reserved
+© 2025 Kelas Mahakam
 </footer>
 
 
 
-<!-- SCRIPT -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <script>
+
+/* AOS */
 AOS.init({
-  duration: 800,
-  once: true,
-  offset: 120
+duration:800,
+once:true
 });
 
-const toggleBtn = document.getElementById('menu-toggle');
-const navLinks = document.getElementById('nav-links');
 
-toggleBtn.addEventListener('click', () => {
-  navLinks.classList.toggle('active');
+/* LOADING */
+window.addEventListener("load",()=>{
+document.getElementById("loader").classList.add("hide");
 });
+
+
+/* NAVBAR SCROLL EFFECT */
+window.addEventListener("scroll",()=>{
+
+const nav=document.getElementById("navbar");
+
+if(window.scrollY>80){
+nav.classList.add("scrolled");
+}else{
+nav.classList.remove("scrolled");
+}
+
+});
+
+
+/* BURGER */
+const toggleBtn=document.getElementById("menu-toggle");
+const navLinks=document.getElementById("nav-links");
+
+toggleBtn.addEventListener("click",()=>{
+navLinks.classList.toggle("active");
+});
+
 </script>
 
 </body>
