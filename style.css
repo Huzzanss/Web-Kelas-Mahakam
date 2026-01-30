@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+/* RESET */
 
 *{
   margin:0;
@@ -17,14 +17,14 @@ body{
 }
 
 
-/* ===== NAVBAR ===== */
+/* NAVBAR */
 
 .navbar{
   position:fixed;
   top:0;
   width:100%;
   background:rgba(0,61,128,0.95);
-  backdrop-filter:blur(8px);
+  backdrop-filter:blur(10px);
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -61,10 +61,11 @@ body{
   background:none;
   border:none;
   color:white;
+  cursor:pointer;
 }
 
 
-/* ===== HERO ===== */
+/* HERO */
 
 .hero{
   height:100vh;
@@ -77,7 +78,7 @@ body{
 .hero-overlay{
   background:rgba(0,61,128,0.85);
   padding:40px;
-  border-radius:18px;
+  border-radius:20px;
   text-align:center;
   color:white;
   max-width:700px;
@@ -89,18 +90,18 @@ body{
 }
 
 .hero-img{
-  margin-top:20px;
   width:100%;
-  border-radius:12px;
+  margin-top:20px;
+  border-radius:14px;
 }
 
 
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 
 .container{
   max-width:1100px;
   margin:auto;
-  padding:90px 20px;
+  padding:100px 20px;
 }
 
 section{
@@ -115,12 +116,12 @@ h2{
 
 .section-img{
   width:100%;
-  border-radius:14px;
+  border-radius:16px;
   margin-bottom:35px;
 }
 
 
-/* ===== MURID ===== */
+/* MURID */
 
 .murid-grid{
   display:grid;
@@ -131,13 +132,14 @@ h2{
 .murid-card{
   background:white;
   padding:22px;
-  border-radius:14px;
-  box-shadow:0 6px 14px rgba(0,0,0,0.06);
+  border-radius:16px;
+  box-shadow:0 8px 18px rgba(0,0,0,0.06);
   transition:.25s;
+  will-change:transform, opacity;
 }
 
 .murid-card:hover{
-  transform:translateY(-6px);
+  transform:translateY(-8px);
 }
 
 .murid-card h3{
@@ -145,7 +147,7 @@ h2{
 }
 
 
-/* ===== INFO CARD ===== */
+/* INFO */
 
 .info-card{
   background:white;
@@ -153,18 +155,18 @@ h2{
   margin:auto;
   padding:25px;
   border-left:6px solid #003d80;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.05);
+  border-radius:12px;
+  box-shadow:0 6px 14px rgba(0,0,0,0.05);
   text-align:center;
   font-size:1.1rem;
 }
 
 
-/* ===== DARK SECTION ===== */
+/* DARK SECTION */
 
 .dark{
   background:#003d80;
-  border-radius:16px;
+  border-radius:18px;
   color:white;
 }
 
@@ -173,7 +175,7 @@ h2{
 }
 
 
-/* ===== FOOTER ===== */
+/* FOOTER */
 
 footer{
   margin-top:60px;
@@ -184,7 +186,7 @@ footer{
 }
 
 
-/* ===== RESPONSIVE ===== */
+/* RESPONSIVE */
 
 @media(max-width:768px){
 
