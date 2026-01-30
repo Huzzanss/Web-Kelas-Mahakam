@@ -19,11 +19,6 @@
 <!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">Mahakam</div>
-  
-  <button id="darkToggle" class="dark-btn">
-  🌙
-  </button>
-
 
   <button class="menu-toggle" id="menu-toggle">☰</button>
 
@@ -133,21 +128,5 @@ toggleBtn.addEventListener('click', () => {
 });
 </script>
 
-<script>
-
-// CEK DARK MODE SYSTEM
-if(window.matchMedia('(prefers-color-scheme: dark)').matches){
-  document.body.classList.add('dark');
-}
-
-// TOGGLE BUTTON
-const toggle = document.getElementById('darkToggle');
-
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
-
-</script>
-  
 </body>
 </html>
