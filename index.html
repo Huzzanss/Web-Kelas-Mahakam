@@ -5,15 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Kelas Mahakam</title>
 
-  <!-- Font -->
+  <!-- Google Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <!-- AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 
   <!-- CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- NAVBAR -->
 <nav class="navbar">
   <div class="logo">Mahakam</div>
 
@@ -29,87 +32,94 @@
 </nav>
 
 
-<!-- ================= HERO ================= -->
+<!-- HERO -->
 <header class="hero">
-  <div class="hero-overlay">
+  <div class="hero-overlay" data-aos="fade-up">
     <h1>Kelas Mahakam</h1>
     <p>Selamat datang di halaman kelas kami!</p>
 
-    <img src="We Are Mahakam.jpg" alt="Foto Kelas Mahakam" class="hero-img">
+    <img src="we-are-mahakam.jpg" alt="Foto kelas" class="hero-img">
   </div>
 </header>
 
 
-<!-- ================= MURID ================= -->
+<!-- MURID -->
 <section id="murid" class="container">
-  <h2>Daftar Murid</h2>
+  <h2 data-aos="fade-up">Daftar Murid</h2>
 
-  <img src="21 STUDENTS.jpg" alt="21 Murid Mahakam" class="section-img">
+  <img src="21-students.jpg" class="section-img" data-aos="zoom-in">
 
   <div class="murid-grid">
 
-    <!-- Copy card ini kalau mau tambah murid -->
-    <div class="murid-card"><h3>Adelia Felicia</h3></div>
-    <div class="murid-card"><h3>Afiqah Humayra Arresky</h3></div>
-    <div class="murid-card"><h3>Alexandra Shavira Kaysa</h3></div>
-    <div class="murid-card"><h3>Alisya Zella Naura Saputro</h3></div>
-    <div class="murid-card"><h3>Alita Admiral</h3></div>
-    <div class="murid-card"><h3>Aqillah Khayyirah</h3></div>
-    <div class="murid-card"><h3>Azima Zafeera Khairiya</h3></div>
-    <div class="murid-card"><h3>Azka Aisy Muhammad Firdaus</h3></div>
-    <div class="murid-card"><h3>Farrel Azka Firlana</h3></div>
-    <div class="murid-card"><h3>Fattah Altaf Qusyairi</h3></div>
-    <div class="murid-card"><h3>Giovanny Syahputra</h3></div>
-    <div class="murid-card"><h3>Gusti Muhammad An-Nafis</h3></div>
-    <div class="murid-card"><h3>Hilmi Muhammad Nidho Mudhin</h3></div>
-    <div class="murid-card"><h3>Khalika Ismatullah Assahla</h3></div>
-    <div class="murid-card"><h3>Muhammad Abdurrahman Dzaki</h3></div>
-    <div class="murid-card"><h3>Muhammad El Junot Razqal</h3></div>
-    <div class="murid-card"><h3>Muhammad Fahri Ardani</h3></div>
-    <div class="murid-card"><h3>Muhammad Hafidz Setiadi</h3></div>
-    <div class="murid-card"><h3>Muhammad Juna Defa Alfarizie</h3></div>
-    <div class="murid-card"><h3>Muhammad Zharif Syatir</h3></div>
-    <div class="murid-card"><h3>Syifa Fathiyah Zahra</h3></div>
+    <!-- CARD -->
+    <div class="murid-card" data-aos="fade-up"><h3>Adelia Felicia</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="50"><h3>Afiqah Humayra Arresky</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="100"><h3>Alexandra Shavira Kaysa</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="150"><h3>Alisya Zella Naura Saputro</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="200"><h3>Alita Admiral</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="250"><h3>Aqillah Khayyirah</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="300"><h3>Azima Zafeera Khairiya</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="350"><h3>Azka Aisy Muhammad Firdaus</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="400"><h3>Farrel Azka Firlana</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="450"><h3>Fattah Altaf Qusyairi</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="500"><h3>Giovanny Syahputra</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="550"><h3>Gusti Muhammad An-Nafis</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="600"><h3>Hilmi Muhammad Nidho Mudhin</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="650"><h3>Khalika Ismatullah Assahla</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="700"><h3>Muhammad Abdurrahman Dzaki</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="750"><h3>Muhammad El Junot Razqal</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="800"><h3>Muhammad Fahri Ardani</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="850"><h3>Muhammad Hafidz Setiadi</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="900"><h3>Muhammad Juna Defa Alfarizie</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="950"><h3>Muhammad Zharif Syatir</h3></div>
+    <div class="murid-card" data-aos="fade-up" data-aos-delay="1000"><h3>Syifa Fathiyah Zahra</h3></div>
 
   </div>
 </section>
 
 
-<!-- ================= INFORMASI ================= -->
+<!-- INFORMASI -->
 <section id="informasi" class="container">
-  <h2>Informasi Mingguan</h2>
+  <h2 data-aos="fade-up">Informasi Mingguan</h2>
 
-  <div class="info-card">
+  <div class="info-card" data-aos="fade-up">
     Bentar lagi lulus 🎓
   </div>
 </section>
 
 
-<!-- ================= JADWAL ================= -->
-<section id="jadwal" class="container">
-  <h2>Jadwal</h2>
+<!-- JADWAL -->
+<section id="jadwal" class="container dark">
+  <h2 data-aos="fade-up">Jadwal</h2>
 
-  <img src="Jadwal Pelajaran.jpg" alt="Jadwal Kelas" class="section-img">
+  <img src="jadwal.jpg" class="section-img" data-aos="zoom-in">
 </section>
 
 
-<!-- ================= STRUKTUR ================= -->
+<!-- STRUKTUR -->
 <section id="struktur" class="container">
-  <h2>Struktur Kelas</h2>
+  <h2 data-aos="fade-up">Struktur Kelas</h2>
 
-  <img src="Struktur Kelas.jpg" alt="Struktur Kelas" class="section-img">
+  <img src="struktur.jpg" class="section-img" data-aos="zoom-in">
 </section>
 
 
-<!-- ================= FOOTER ================= -->
 <footer>
   © 2025 Kelas Mahakam — All Rights Reserved
 </footer>
 
 
 
-<!-- ================= SCRIPT ================= -->
+<!-- SCRIPT -->
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+
 <script>
+AOS.init({
+  duration: 800,
+  once: true,
+  offset: 120
+});
+
 const toggleBtn = document.getElementById('menu-toggle');
 const navLinks = document.getElementById('nav-links');
 
