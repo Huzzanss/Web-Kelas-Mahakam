@@ -249,3 +249,67 @@ right:5%;
 }
 
 }
+/* MOVIE CREDITS */
+
+.movie-credits{
+height:100vh;
+background:black;
+color:white;
+overflow:hidden;
+display:flex;
+align-items:center;
+justify-content:center;
+perspective:400px;
+}
+
+.credits-wrapper{
+position:relative;
+height:100%;
+width:100%;
+}
+
+.credits-text{
+position:absolute;
+bottom:-100%;
+width:100%;
+text-align:center;
+font-weight:600;
+animation:scrollCredits 25s linear infinite;
+
+transform-origin:50% 100%;
+transform:rotateX(25deg);
+}
+
+/* TEXT STYLE */
+
+.credits-text h2{
+font-size:2.5rem;
+margin:40px 0;
+letter-spacing:3px;
+}
+
+.credits-text h3{
+font-size:1.6rem;
+margin-bottom:25px;
+color:#7c3aed;
+}
+
+.credits-text p{
+opacity:.7;
+margin-bottom:5px;
+}
+
+
+/* ANIMATION */
+
+@keyframes scrollCredits{
+
+0%{
+bottom:-100%;
+}
+
+100%{
+bottom:120%;
+}
+
+}
