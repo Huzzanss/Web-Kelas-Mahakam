@@ -34,6 +34,18 @@
   </div>
 </section>
 
+<!-- COUNTDOWN -->
+<section id="countdown" class="container center">
+  <h2>Menuju Kelulusan</h2>
+
+  <div class="count-grid">
+    <div><span id="days">0</span><p>Hari</p></div>
+    <div><span id="hours">0</span><p>Jam</p></div>
+    <div><span id="minutes">0</span><p>Menit</p></div>
+    <div><span id="seconds">0</span><p>Detik</p></div>
+  </div>
+</section>
+
 <!-- LIVE MOOD -->
 <section id="mood" class="container center">
 <h2>Live Mood Kelas</h2>
@@ -220,6 +232,36 @@ chatMessages.scrollTop=chatMessages.scrollHeight;
 
 chatToggle.onclick=()=>chatBox.classList.toggle("show");
 closeChat.onclick=()=>chatBox.classList.remove("show");
+
+  /* ================= COUNTDOWN (WITA / GMT+8) ================= */
+
+// GANTI TANGGAL KELULUSAN DI SINI
+// FORMAT: "YYYY-MM-DDTHH:MM:SS+08:00"
+const gradDate = new Date("2026-05-30T08:00:00+08:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const gap = gradDate - now;
+
+  if (gap <= 0) {
+    days.textContent = 0;
+    hours.textContent = 0;
+    minutes.textContent = 0;
+    seconds.textContent = 0;
+    return;
+  }
+
+  const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+  const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
+  const s = Math.floor((gap % (1000 * 60)) / 1000);
+
+  days.textContent = d;
+  hours.textContent = h;
+  minutes.textContent = m;
+  seconds.textContent = s;
+}, 1000);
+  
 </script>
 
 </body>
