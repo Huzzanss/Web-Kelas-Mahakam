@@ -80,6 +80,9 @@ Chat Anonim
 <span id="closeChat">✕</span>
 </div>
 <div class="chat-messages" id="chatMessages"></div>
+  <div class="typing-indicator" id="typingIndicator">
+  Seseorang sedang mengetik...
+</div>
 <div class="chat-input-area">
 <input type="text" id="chatInput" placeholder="Kirim pesan anonim...">
 <button id="sendBtn">Kirim</button>
@@ -188,6 +191,37 @@ apiKey:"AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
 databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db=firebase.database().ref("anonChat");
+const typingRef = firebase.database().ref("typing");
+let typingTimeout;
+
+/* SAAT NGETIK */
+chatInput.addEventListener("input", () => {
+  typingRef.set(true);
+
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    typingRef.set(false);
+  }, 1200);
+});
+
+typingRef.on("value", snap => {
+  typingIndicator.style.display = snap.val() ? "block" : "none";
+});
+
+/* SAAT KIRIM PESAN */
+function sendMessage(){
+  const text = chatInput.value.trim();
+  if(!text) return;
+
+  db.push({
+    msg: text,
+    time: Date.now()
+  });
+
+  chatInput.value='';
+  typingRef.set(false);
+}
+
 sendBtn.onclick=()=>{
 if(chatInput.value.trim()){
 db.push({
