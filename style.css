@@ -171,35 +171,75 @@ color:white;
 
 
 /* CARD */
-
+/* GRID */
 .murid-grid{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
+grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+gap:35px;
+perspective:1000px; /* penting untuk efek 3D */
 }
 
+/* CARD */
 .murid-card{
 background:white;
-padding:20px;
-border-radius:18px;
+border-radius:22px;
+padding:28px;
 text-align:center;
-box-shadow:0 10px 25px rgba(0,0,0,.06);
-transition:.3s;
+box-shadow:0 20px 40px rgba(0,0,0,.08);
+
+transition:
+transform .25s ease,
+box-shadow .25s ease;
+
+transform-style:preserve-3d;
+will-change:transform;
+cursor:pointer;
+
+/* animasi scroll */
+opacity:0;
+transform:translateY(60px) scale(.95);
 }
 
+/* aktif saat terlihat */
+.murid-card.show{
+opacity:1;
+transform:translateY(0) scale(1);
+}
+
+/* HOVER 3D */
 .murid-card:hover{
-transform:translateY(-10px);
+box-shadow:0 30px 60px rgba(0,0,0,.18);
 }
 
-.murid-card img{
+/* FOTO */
+.murid-img{
+width:120px;
+height:120px;
+margin:auto;
+margin-bottom:18px;
+border-radius:50%;
+overflow:hidden;
+border:4px solid #2563eb;
+transform:translateZ(40px); /* bikin foto ikut 3D */
+}
+
+.murid-img img{
 width:100%;
-height:220px;
+height:100%;
 object-fit:cover;
-border-radius:14px;
-margin-bottom:10px;
 }
 
+/* TEXT */
+.murid-card h3{
+font-weight:700;
+transform:translateZ(30px);
+}
 
+.murid-card p{
+color:#666;
+font-size:.9rem;
+transform:translateZ(20px);
+}
 
 /* INFO */
 
