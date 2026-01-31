@@ -131,8 +131,16 @@ let v=localStorage.v||0;
 localStorage.v=++v;
 visitor.textContent="👀 "+v+" kunjungan";
 
-<script>
-/* ================= MUSIC HP SAFE ================= */
+/* MUSIC */
+const songs=["music/1.mp3","music/2.mp3","music/3.mp3"];
+let i=0;
+bgMusic.volume=.2;
+document.addEventListener("click",()=>{
+bgMusic.src=songs[i];
+bgMusic.play();
+bgMusic.onended=()=>{i=(i+1)%songs.length;bgMusic.src=songs[i];bgMusic.play();}
+},{once:true});
+/* ================= MUSIC AUTO FIX ================= */
 
 const songs = [
   "music/Terbuang Dalam Waktu.mp3",
@@ -150,14 +158,7 @@ function startMusic() {
 
   player.src = songs[songIndex];
   player.volume = 0.25;
-
-  const playPromise = player.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      // kalau masih diblok, tunggu tap berikutnya
-      started = false;
-    });
-  }
+  player.play().catch(()=>{});
 
   player.onended = () => {
     songIndex = (songIndex + 1) % songs.length;
@@ -166,10 +167,10 @@ function startMusic() {
   };
 }
 
-/* ⚠️ EVENT WAJIB DI HP */
-document.addEventListener("touchstart", startMusic, { once:true });
-document.addEventListener("click", startMusic, { once:true });
-</script>
+/* Trigger di interaksi APAPUN */
+["click","touchstart","scroll","keydown"].forEach(evt=>{
+  document.addEventListener(evt, startMusic, { once:true });
+});
 
 /* CHAT UI */
 chatToggle.onclick=()=>chatBox.classList.toggle("show");
