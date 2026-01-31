@@ -190,59 +190,46 @@ firebase.initializeApp({
 apiKey:"AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
 databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
-const db=firebase.database().ref("anonChat");
+const chatInput = document.getElementById("chatInput");
+const sendBtn = document.getElementById("sendBtn");
+const chatMessages = document.getElementById("chatMessages");
+
+const db = firebase.database().ref("anonChat");
 const typingRef = firebase.database().ref("typing");
-let typingTimeout;
 
-/* SAAT NGETIK */
-chatInput.addEventListener("input", () => {
-  typingRef.set(true);
-
-  clearTimeout(typingTimeout);
-  typingTimeout = setTimeout(() => {
-    typingRef.set(false);
-  }, 1200);
-});
-
-typingRef.on("value", snap => {
-  typingIndicator.style.display = snap.val() ? "block" : "none";
-});
-
-/* SAAT KIRIM PESAN */
-function sendMessage(){
+/* ================= KIRIM PESAN ================= */
+function sendMessage() {
   const text = chatInput.value.trim();
-  if(!text) return;
+  if (!text) return;
 
   db.push({
     msg: text,
     time: Date.now()
   });
 
-  chatInput.value='';
+  chatInput.value = "";
   typingRef.set(false);
 }
 
-sendBtn.onclick=()=>{
-if(chatInput.value.trim()){
-db.push({
-  msg: input,
-  time: Date.now()
-});
-chatInput.value="";
-}
-}
-db.limitToLast(100).on("child_added", snap => {
+/* KLIK BUTTON */
+sendBtn.addEventListener("click", sendMessage);
 
+/* ENTER */
+chatInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") sendMessage();
+});
+
+/* ================= TERIMA PESAN ================= */
+db.limitToLast(100).on("child_added", snap => {
   const data = snap.val();
 
   const time = new Date(data.time).toLocaleTimeString([], {
-    hour: '2-digit',
-    minute: '2-digit'
+    hour: "2-digit",
+    minute: "2-digit"
   });
 
   const bubble = document.createElement("div");
   bubble.className = "message";
-
   bubble.innerHTML = `
     ${data.msg}
     <span class="message-time">${time}</span>
@@ -252,6 +239,21 @@ db.limitToLast(100).on("child_added", snap => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+/* ================= TYPING INDICATOR ================= */
+let typingTimeout;
+
+chatInput.addEventListener("input", () => {
+  typingRef.set(true);
+  clearTimeout(typingTimeout);
+  typingTimeout = setTimeout(() => {
+    typingRef.set(false);
+  }, 1200);
+});
+
+typingRef.on("value", snap => {
+  document.getElementById("typingIndicator").style.display =
+    snap.val() ? "block" : "none";
+});
 document.addEventListener("DOMContentLoaded", () => {
 
   const todayStudentEl = document.getElementById("todayStudent");
