@@ -199,6 +199,14 @@ background:#334155;
 transform:translateY(-1px);
 }
 
+.message-time{
+display:block;
+font-size:.7rem;
+opacity:.6;
+margin-top:6px;
+text-align:right;
+}
+
 /* MOBILE */
 @media(max-width:768px){
 .chat-box{
