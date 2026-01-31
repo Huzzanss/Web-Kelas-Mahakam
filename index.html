@@ -30,7 +30,10 @@
 <h1>MAHAKAM</h1>
 <p>bukan sekadar kelas.</p>
 
-<div class="spotlight" id="spotlight"></div>
+<div class="spotlight">
+  Hari ini: <span id="todayStudent"></span>
+</div>
+
 
 </div>
 </section>
@@ -150,14 +153,24 @@ grid.innerHTML += `
 });
 
 
-/* ================= RANDOM SPOTLIGHT ================= */
+/* ======================
+   RANDOM STUDENT HARIAN
+====================== */
 
-const randomStudent =
-students[Math.floor(Math.random()*students.length)];
+const todayKey = new Date().toDateString();
+let todayStudent = localStorage.getItem("todayStudent");
+let savedDate = localStorage.getItem("studentDate");
 
-document.getElementById("spotlight").innerHTML =
-`🔥 Hari ini: <b>${randomStudent}</b>`;
+if(savedDate !== todayKey){
 
+const randomIndex = Math.floor(Math.random()*students.length);
+todayStudent = students[randomIndex];
+
+localStorage.setItem("todayStudent", todayStudent);
+localStorage.setItem("studentDate", todayKey);
+}
+
+document.getElementById("todayStudent").textContent = todayStudent;
 
 /* ================= COUNTDOWN ================= */
 
