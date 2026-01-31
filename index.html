@@ -131,7 +131,8 @@ let v=localStorage.v||0;
 localStorage.v=++v;
 visitor.textContent="👀 "+v+" kunjungan";
 
-/* ================= MUSIC AUTO FIX ================= */
+<script>
+/* ================= MUSIC HP SAFE ================= */
 
 const songs = [
   "music/Terbuang Dalam Waktu.mp3",
@@ -149,7 +150,14 @@ function startMusic() {
 
   player.src = songs[songIndex];
   player.volume = 0.25;
-  player.play().catch(()=>{});
+
+  const playPromise = player.play();
+  if (playPromise !== undefined) {
+    playPromise.catch(() => {
+      // kalau masih diblok, tunggu tap berikutnya
+      started = false;
+    });
+  }
 
   player.onended = () => {
     songIndex = (songIndex + 1) % songs.length;
@@ -158,10 +166,10 @@ function startMusic() {
   };
 }
 
-/* Trigger di interaksi APAPUN */
-["click","touchstart","scroll","keydown"].forEach(evt=>{
-  document.addEventListener(evt, startMusic, { once:true });
-});
+/* ⚠️ EVENT WAJIB DI HP */
+document.addEventListener("touchstart", startMusic, { once:true });
+document.addEventListener("click", startMusic, { once:true });
+</script>
 
 /* CHAT UI */
 chatToggle.onclick=()=>chatBox.classList.toggle("show");
