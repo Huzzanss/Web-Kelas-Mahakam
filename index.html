@@ -15,8 +15,8 @@
   <div class="logo">Mahakam</div>
   <ul class="nav-links">
     <li><a href="#">Beranda</a></li>
+    <li><a href="#countdown">Kelulusan</a></li>
     <li><a href="#mood">Mood</a></li>
-    <li><a href="#poll">Polling</a></li>
     <li><a href="#murid">Murid</a></li>
   </ul>
 </nav>
@@ -63,32 +63,6 @@ Mood Terbanyak Hari Ini:
 </div>
 </section>
 
-<!-- POLLING -->
-<section id="poll" class="container center">
-<h2>Polling Mingguan</h2>
-
-<p class="poll-question">
-Hal yang paling bakal kamu rindukan dari Mahakam?
-</p>
-
-<div class="poll-options">
-<button data-vote="Teman">Teman</button>
-<button data-vote="Tawa">Tawa</button>
-<button data-vote="Kelas">Kelas</button>
-<button data-vote="Kenangan">Kenangan</button>
-</div>
-
-<div class="poll-result" id="pollResult"></div>
-</section>
-
-<!-- FINAL MESSAGE -->
-<section class="container center">
-<h2>Pesan Terakhir</h2>
-<div id="finalMessage" class="locked">
-⏳ Pesan ini akan terbuka mendekati kelulusan
-</div>
-</section>
-
 <!-- MURID -->
 <section id="murid" class="container">
 <h2>Daftar Murid</h2>
@@ -106,8 +80,6 @@ Hal yang paling bakal kamu rindukan dari Mahakam?
 
   <div class="chat-messages" id="chatMessages"></div>
 
-  <div class="typing" id="typingStatus"></div>
-
   <div class="chat-input-area">
     <input type="text" id="chatInput" placeholder="Ketik pesan..." maxlength="150">
     <button id="sendBtn">Kirim</button>
@@ -119,7 +91,7 @@ Hal yang paling bakal kamu rindukan dari Mahakam?
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
-/* ================= FIREBASE CONFIG ================= */
+/* ================= FIREBASE ================= */
 const firebaseConfig = {
   apiKey: "AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
   authDomain: "chat-anonim-mahakam.firebaseapp.com",
@@ -130,7 +102,6 @@ const firebaseConfig = {
   appId: "1:270549776266:web:9f1eaf52c5aadb18577a73"
 };
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
 
 /* ================= NAVBAR ================= */
@@ -169,99 +140,56 @@ genBtn.onclick=()=>{
   genResult.textContent="Mahakam adalah "+phrases[Math.floor(Math.random()*phrases.length)];
 };
 
-/* ================= LIVE MOOD ================= */
-const moodRef=db.ref("mood/"+new Date().toDateString());
+/* ================= COUNTDOWN (11 MEI JAM 10 WITA) ================= */
+const gradDate = new Date("2026-05-11T10:00:00+08:00").getTime();
 
-document.querySelectorAll(".mood-grid button").forEach(btn=>{
-btn.onclick=()=>{
-  moodRef.child(btn.dataset.mood).transaction(v=>(v||0)+1);
-};
-});
-
-moodRef.on("value",snap=>{
-let max=0,top="-";
-snap.forEach(c=>{
-if(c.val()>max){max=c.val();top=c.key;}
-});
-topMood.textContent=top;
-});
-
-/* ================= POLLING ================= */
-const pollRef=db.ref("poll");
-
-document.querySelectorAll(".poll-options button").forEach(btn=>{
-btn.onclick=()=>{
-pollRef.child(btn.dataset.vote).transaction(v=>(v||0)+1);
-};
-});
-
-pollRef.on("value",snap=>{
-let html="";
-snap.forEach(c=>{
-html+=`${c.key}: ${c.val()} suara<br>`;
-});
-pollResult.innerHTML=html;
-});
-
-/* ================= FINAL MESSAGE ================= */
-const gradDate=new Date("May 11, 2026 00:00:00 GMT+0800").getTime();
 setInterval(()=>{
-if(Date.now()>gradDate-1000*60*60*24*7){
-finalMessage.classList.remove("locked");
-finalMessage.textContent="Terima kasih sudah jadi Mahakam. Kalian keluarga. 💙";
-}
-},1000);
-
-/* ================= CHAT ================= */
-const chatRef=db.ref("chat");
-
-sendBtn.onclick=()=>{
-if(!chatInput.value) return;
-chatRef.push({msg:chatInput.value,time:Date.now()});
-chatInput.value="";
-};
-
-chatRef.limitToLast(100).on("child_added",s=>{
-const d=s.val();
-chatMessages.innerHTML+=`<div class="message">
-${d.msg}
-<span>${new Date(d.time).toLocaleTimeString()}</span>
-</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
-});
-
-chatToggle.onclick=()=>chatBox.classList.toggle("show");
-closeChat.onclick=()=>chatBox.classList.remove("show");
-
-  /* ================= COUNTDOWN (WITA / GMT+8) ================= */
-
-// GANTI TANGGAL KELULUSAN DI SINI
-// FORMAT: "YYYY-MM-DDTHH:MM:SS+08:00"
-const gradDate = new Date("2026-05-11T08:00:00+08:00").getTime();
-
-setInterval(() => {
   const now = new Date().getTime();
   const gap = gradDate - now;
 
-  if (gap <= 0) {
-    days.textContent = 0;
-    hours.textContent = 0;
-    minutes.textContent = 0;
-    seconds.textContent = 0;
+  if(gap <= 0){
+    days.textContent=0;
+    hours.textContent=0;
+    minutes.textContent=0;
+    seconds.textContent=0;
     return;
   }
 
-  const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-  const h = Math.floor((gap % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  const m = Math.floor((gap % (1000 * 60 * 60)) / (1000 * 60));
-  const s = Math.floor((gap % (1000 * 60)) / 1000);
+  days.textContent = Math.floor(gap/(1000*60*60*24));
+  hours.textContent = Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+  minutes.textContent = Math.floor((gap%(1000*60*60))/(1000*60));
+  seconds.textContent = Math.floor((gap%(1000*60))/1000);
+},1000);
 
-  days.textContent = d;
-  hours.textContent = h;
-  minutes.textContent = m;
-  seconds.textContent = s;
-}, 1000);
-  
+/* ================= LIVE MOOD ================= */
+const moodRef=db.ref("mood/"+new Date().toDateString());
+document.querySelectorAll(".mood-grid button").forEach(btn=>{
+  btn.onclick=()=>moodRef.child(btn.dataset.mood).transaction(v=>(v||0)+1);
+});
+moodRef.on("value",snap=>{
+  let max=0,top="-";
+  snap.forEach(c=>{if(c.val()>max){max=c.val();top=c.key;}});
+  topMood.textContent=top;
+});
+
+/* ================= CHAT ================= */
+const chatRef=db.ref("chat");
+sendBtn.onclick=()=>{
+  if(!chatInput.value) return;
+  chatRef.push({msg:chatInput.value,time:Date.now()});
+  chatInput.value="";
+};
+chatRef.limitToLast(100).on("child_added",s=>{
+  const d=s.val();
+  chatMessages.innerHTML+=`
+  <div class="message">
+    ${d.msg}
+    <span>${new Date(d.time).toLocaleTimeString()}</span>
+  </div>`;
+  chatMessages.scrollTop=chatMessages.scrollHeight;
+});
+chatToggle.onclick=()=>chatBox.classList.toggle("show");
+closeChat.onclick=()=>chatBox.classList.remove("show");
 </script>
 
 </body>
