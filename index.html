@@ -115,15 +115,40 @@ grid.innerHTML+=`
 </div>`;
 });
 
-/* COUNTDOWN */
-const grad=new Date("June 11, 2026 10:00:00").getTime();
-setInterval(()=>{
-const g=grad-Date.now();
-days.textContent=Math.floor(g/86400000);
-hours.textContent=Math.floor(g%86400000/3600000);
-minutes.textContent=Math.floor(g%3600000/60000);
-seconds.textContent=Math.floor(g%60000/1000);
-},1000);
+/* ================= COUNTDOWN GMT+8 ================= */
+
+// TANGGAL KELULUSAN (GMT+8)
+const gradDateGMT8 = Date.UTC(2026, 4, 11, 2, 0, 0);
+// Penjelasan:
+// Bulan = 4 (Mei, karena mulai dari 0)
+// 02:00 UTC = 10:00 GMT+8
+
+function updateCountdown() {
+
+  const nowUTC = Date.now();
+  const nowGMT8 = nowUTC + (8 * 60 * 60 * 1000);
+
+  const gap = gradDateGMT8 - nowGMT8;
+
+  if (gap <= 0) {
+    days.textContent = hours.textContent =
+    minutes.textContent = seconds.textContent = 0;
+    return;
+  }
+
+  const d = Math.floor(gap / (1000 * 60 * 60 * 24));
+  const h = Math.floor((gap / (1000 * 60 * 60)) % 24);
+  const m = Math.floor((gap / (1000 * 60)) % 60);
+  const s = Math.floor((gap / 1000) % 60);
+
+  days.textContent = d;
+  hours.textContent = h;
+  minutes.textContent = m;
+  seconds.textContent = s;
+}
+
+setInterval(updateCountdown, 1000);
+updateCountdown();
 
 /* NAVBAR */
 window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",scrollY>40));
