@@ -112,33 +112,6 @@ grid.innerHTML+=`
 </div>`;
 });
 
-/* ======================
-   RANDOM STUDENT GLOBAL
-====================== */
-
-const spotlightRef = firebase.database().ref("spotlight");
-const today = new Date().toISOString().split("T")[0];
-
-spotlightRef.once("value").then(snapshot => {
-  const data = snapshot.val();
-
-  if (!data || data.date !== today) {
-    // Pilih random baru
-    const randomIndex = Math.floor(Math.random() * students.length);
-    const chosenStudent = students[randomIndex];
-
-    spotlightRef.set({
-      name: chosenStudent,
-      date: today
-    });
-
-    document.getElementById("todayStudent").textContent = chosenStudent;
-  } else {
-    // Pakai yang sudah ada
-    document.getElementById("todayStudent").textContent = data.name;
-  }
-});
-
 /* COUNTDOWN */
 const grad=new Date("June 11, 2026 10:00:00").getTime();
 setInterval(()=>{
@@ -192,6 +165,35 @@ db.limitToLast(100).on("child_added",s=>{
 chatMessages.innerHTML+=`<div class="message">${s.val().msg}</div>`;
 chatMessages.scrollTop=chatMessages.scrollHeight;
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  const todayStudentEl = document.getElementById("todayStudent");
+  if (!todayStudentEl) return;
+
+  const spotlightRef = firebase.database().ref("spotlight");
+  const today = new Date().toISOString().split("T")[0];
+
+  spotlightRef.once("value").then(snapshot => {
+    const data = snapshot.val();
+
+    if (!data || data.date !== today) {
+      const randomIndex = Math.floor(Math.random() * students.length);
+      const chosenStudent = students[randomIndex];
+
+      spotlightRef.set({
+        name: chosenStudent,
+        date: today
+      });
+
+      todayStudentEl.textContent = chosenStudent;
+    } else {
+      todayStudentEl.textContent = data.name;
+    }
+  });
+
+});
+
 </script>
 
 </body>
