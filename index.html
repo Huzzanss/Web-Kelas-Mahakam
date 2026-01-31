@@ -112,13 +112,34 @@ grid.innerHTML+=`
 </div>`;
 });
 
-/* RANDOM HARIAN (TIDAK BERUBAH SAAT REFRESH) */
-const key=new Date().toDateString();
-if(localStorage.day!==key){
-localStorage.day=key;
-localStorage.today=students[Math.floor(Math.random()*students.length)];
-}
-todayStudent.textContent=localStorage.today;
+<script>
+/* ======================
+   RANDOM STUDENT GLOBAL
+====================== */
+
+const spotlightRef = firebase.database().ref("spotlight");
+const today = new Date().toISOString().split("T")[0];
+
+spotlightRef.once("value").then(snapshot => {
+  const data = snapshot.val();
+
+  if (!data || data.date !== today) {
+    // Pilih random baru
+    const randomIndex = Math.floor(Math.random() * students.length);
+    const chosenStudent = students[randomIndex];
+
+    spotlightRef.set({
+      name: chosenStudent,
+      date: today
+    });
+
+    document.getElementById("todayStudent").textContent = chosenStudent;
+  } else {
+    // Pakai yang sudah ada
+    document.getElementById("todayStudent").textContent = data.name;
+  }
+});
+</script>
 
 /* COUNTDOWN */
 const grad=new Date("June 11, 2026 10:00:00").getTime();
