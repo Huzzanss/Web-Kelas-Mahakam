@@ -280,6 +280,49 @@ button:hover{
 }
 
 /* =====================
+   MURID
+===================== */
+.murid-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:30px;
+}
+
+.murid-card{
+  background:white;
+  border-radius:22px;
+  padding:30px 20px;
+  text-align:center;
+  box-shadow:0 20px 45px rgba(15,23,42,.08);
+  transition:.3s;
+}
+
+.murid-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 30px 70px rgba(15,23,42,.18);
+}
+
+.murid-avatar{
+  width:70px;
+  height:70px;
+  margin:auto;
+  border-radius:50%;
+  background:#0f172a;
+  color:white;
+  font-size:2rem;
+  font-weight:800;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:15px;
+}
+
+.murid-card h3{
+  font-size:1.05rem;
+  font-weight:700;
+}
+
+/* =====================
    RESPONSIVE
 ===================== */
 @media(max-width:768px){
