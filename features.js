@@ -1,10 +1,38 @@
 /* STUDENTS */
 const students = [
-"Adelia Felicia","Afiqah Humayra","Alexandra Shavira","Alisya Zella",
-"Alita Admiral","Aqillah Khayyirah","Azima Zafeera","Azka Aisy",
-"Farrel Azka","Fattah Altaf","Giovanny","Hilmi","Khalika",
-"Muhammad Dzaki","Hafidz","Syifa Zahra"
+  "Adelia Felicia",
+  "Afiqah Humayra Arresky",
+  "Alexandra Shavira Kaysa",
+  "Alisya Zella Naura Saputro",
+  "Alita Admiral",
+  "Aqillah Khayyirah",
+  "Azima Zafeera Khairiya",
+  "Azka Aisy Muhammad Firdaus",
+  "Farrel Azka Firlana",
+  "Fattah Altaf Qusyairi",
+  "Giovanny Syahputra",
+  "Gusti Muhammad An-Nafis",
+  "Hilmi Muhammad Nidho Mudhin",
+  "Khalika Ismatullah Assahla",
+  "Muhammad Abdurrahman Dzaki",
+  "Muhammad El Junot Razqal",
+  "Muhammad Fahri Ardani",
+  "Muhammad Hafidz Setiadi",
+  "Muhammad Juna Defa Alfarizie",
+  "Muhammad Zharif Syatir",
+  "Syifa Fathiyah Zahra"
 ];
+
+const muridGrid = document.getElementById("muridGrid");
+
+students.forEach((name, i) => {
+  muridGrid.innerHTML += `
+    <div class="murid-card">
+      <div class="murid-avatar">${name.charAt(0)}</div>
+      <h3>${name}</h3>
+    </div>
+  `;
+});
 
 /* RANDOM STUDENT HARIAN (GLOBAL) */
 const todayRef = db.ref("todayStudent");
