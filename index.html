@@ -140,37 +140,6 @@ bgMusic.src=songs[i];
 bgMusic.play();
 bgMusic.onended=()=>{i=(i+1)%songs.length;bgMusic.src=songs[i];bgMusic.play();}
 },{once:true});
-/* ================= MUSIC AUTO FIX ================= */
-
-const songs = [
-  "music/Terbuang Dalam Waktu.mp3",
-  "music/Sency.mp3",
-  "music/song3.mp3"
-];
-
-const player = document.getElementById("bgMusic");
-let songIndex = 0;
-let started = false;
-
-function startMusic() {
-  if (started) return;
-  started = true;
-
-  player.src = songs[songIndex];
-  player.volume = 0.25;
-  player.play().catch(()=>{});
-
-  player.onended = () => {
-    songIndex = (songIndex + 1) % songs.length;
-    player.src = songs[songIndex];
-    player.play();
-  };
-}
-
-/* Trigger di interaksi APAPUN */
-["click","touchstart","scroll","keydown"].forEach(evt=>{
-  document.addEventListener(evt, startMusic, { once:true });
-});
 
 /* CHAT UI */
 chatToggle.onclick=()=>chatBox.classList.toggle("show");
