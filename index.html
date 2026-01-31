@@ -6,197 +6,128 @@
 
 <title>Kelas Mahakam</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-
-<link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-
 <link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 </head>
+
 <body>
-
-
-<!-- LOADING -->
-<div id="loader">
-  <div class="spinner"></div>
-</div>
-
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="logo">Mahakam</div>
+<div class="logo">Mahakam</div>
 
-  <button class="menu-toggle" id="menu-toggle">☰</button>
-
-  <ul class="nav-links" id="nav-links">
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#murid">Murid</a></li>
-    <li><a href="#informasi">Informasi</a></li>
-    <li><a href="#jadwal">Jadwal</a></li>
-    <li><a href="#struktur">Struktur</a></li>
-  </ul>
+<ul class="nav-links">
+<li><a href="#">Beranda</a></li>
+<li><a href="#murid">Murid</a></li>
+</ul>
 </nav>
 
 
-
 <!-- HERO -->
-<header class="hero">
+<section class="hero">
 
-<div class="hero-content" data-aos="fade-up">
-  <h1>Kelas Mahakam</h1>
-  <p>Website resmi kelas kami — modern, kompak, dan penuh kenangan.</p>
+<div class="hero-content">
+<h1>Kelas Mahakam</h1>
+<p>Website resmi kelas paling solid 😎</p>
 
-  <img src="we-are-mahakam.png" class="hero-img">
+<img src="We Are Mahakam.jpg" class="hero-img">
+
 </div>
 
-</header>
-
+</section>
 
 
 <!-- MURID -->
 <section id="murid" class="container">
 
-<h2 data-aos="fade-up">Daftar Murid</h2>
+<h2>Daftar Murid</h2>
 
 <div class="murid-grid">
 
-<div class="murid-card" data-aos="fade-up"><div class="murid-img"><img src="student.png"></div><h3>Adelia Felicia</h3></div>
+<!-- DUPLIKASI CARD = otomatis grid -->
+<script>
+const students = [
+"Adelia Felicia",
+"Afiqah Humayra Arresky",
+"Alexandra Shavira Kaysa",
+"Alisya Zella Naura Saputro",
+"Alita Admiral",
+"Aqillah Khayyirah",
+"Azima Zafeera Khairiya",
+"Azka Aisy Muhammad Firdaus",
+"Farrel Azka Firlana",
+"Fattah Altaf Qusyairi",
+"Giovanny Syahputra",
+"Gusti Muhammad An-Nafis",
+"Hilmi Muhammad Nidho Mudhin",
+"Khalika Ismatullah Assahla",
+"Muhammad Abdurrahman Dzaki",
+"Muhammad El Junot Razqal",
+"Muhammad Fahri Ardani",
+"Muhammad Hafidz Setiadi",
+"Muhammad Juna Defa Alfarizie",
+"Muhammad Zharif Syatir",
+"Syifa Fathiyah Zahra"
+];
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="50"><div class="murid-img"><img src="student.jpg"></div><h3>Afiqah Humayra Arresky</h3></div>
+document.write(
+students.map((name,i)=>`
+<div class="murid-card">
+<div class="murid-img">
+<img src="student.jpg">
+</div>
+<h3>${name}</h3>
+</div>
+`).join('')
+);
+</script>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="100"><div class="murid-img"><img src="student.jpg"></div><h3>Alexandra Shavira Kaysa</h3></div>
+</div>
+</section>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="150"><div class="murid-img"><img src="student.jpg"></div><h3>Alisya Zella Naura Saputro</h3></div>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="200"><div class="murid-img"><img src="student.jpg"></div><h3>Alita Admiral</h3></div>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="250"><div class="murid-img"><img src="student.jpg"></div><h3>Aqillah Khayyirah</h3></div>
+<!-- FLOATING CHAT -->
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="300"><div class="murid-img"><img src="student.jpg"></div><h3>Azima Zafeera Khairiya</h3></div>
+<div class="chat-toggle" id="chatToggle">💬</div>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="350"><div class="murid-img"><img src="student.jpg"></div><h3>Azka Aisy Muhammad Firdaus</h3></div>
+<div class="chat-box" id="chatBox">
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="400"><div class="murid-img"><img src="student.jpg"></div><h3>Farrel Azka Firlana</h3></div>
+<div class="chat-header">
+Chat Anonim
+<span id="closeChat">✕</span>
+</div>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="450"><div class="murid-img"><img src="student.jpg"></div><h3>Fattah Altaf Qusyairi</h3></div>
+<div class="chat-messages" id="chatMessages"></div>
 
-<div class="murid-card" data-aos="fade-up" data-aos-delay="500"><div class="murid-img"><img src="student.jpg"></div><h3>Giovanny Syahputra</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="550"><div class="murid-img"><img src="student.jpg"></div><h3>Gusti Muhammad An-Nafis</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="600"><div class="murid-img"><img src="student.jpg"></div><h3>Hilmi Muhammad Nidho Mudhin</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="650"><div class="murid-img"><img src="student.jpg"></div><h3>Khalika Ismatullah Assahla</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="700"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad Abdurrahman Dzaki</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="750"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad El Junot Razqal</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="800"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad Fahri Ardani</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="850"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad Hafidz Setiadi</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="900"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad Juna Defa Alfarizie</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="950"><div class="murid-img"><img src="student.jpg"></div><h3>Muhammad Zharif Syatir</h3></div>
-
-<div class="murid-card" data-aos="fade-up" data-aos-delay="1000"><div class="murid-img"><img src="student.jpg"></div><h3>Syifa Fathiyah Zahra</h3></div>
+<div class="chat-input-area">
+<input type="text" id="chatInput" placeholder="Kirim pesan..." maxlength="120">
+<button onclick="sendMessage()">Kirim</button>
+</div>
 
 </div>
 
-</section>
 
-
-
-
-<!-- INFO -->
-<section id="informasi" class="gradient">
-
-<div class="container">
-
-<h2 data-aos="fade-up">Informasi Mingguan</h2>
-
-<div class="info-card" data-aos="zoom-in">
-🎓 Bentar lagi lulus — semoga semua sukses!
-</div>
-
-</div>
-
-</section>
-
-
-
-<!-- JADWAL -->
-<section id="jadwal" class="container">
-
-<h2 data-aos="fade-up">Jadwal</h2>
-
-<img src="jadwal.jpg" class="section-img" data-aos="zoom-in">
-
-</section>
-
-<!-- Struktur -->
-<section id="jadwal" class="container">
-
-<h2 data-aos="fade-up">Struktur Kelas</h2>
-
-<img src="struktur.jpg" class="section-img" data-aos="zoom-in">
-
-</section>
-
-<footer>
-© 2025 Kelas Mahakam
-</footer>
-
-
-
-<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <script>
 
-/* AOS */
-AOS.init({
-duration:800,
-once:true
-});
+/* NAVBAR SCROLL */
 
+window.addEventListener('scroll',()=>{
 
-/* LOADING */
-window.addEventListener("load",()=>{
-document.getElementById("loader").classList.add("hide");
-});
+const nav = document.getElementById('navbar');
 
-
-/* NAVBAR SCROLL EFFECT */
-window.addEventListener("scroll",()=>{
-
-const nav=document.getElementById("navbar");
-
-if(window.scrollY>80){
-nav.classList.add("scrolled");
+if(window.scrollY > 50){
+nav.classList.add('scrolled');
 }else{
-nav.classList.remove("scrolled");
+nav.classList.remove('scrolled');
 }
 
 });
 
 
-/* BURGER */
-const toggleBtn=document.getElementById("menu-toggle");
-const navLinks=document.getElementById("nav-links");
-
-toggleBtn.addEventListener("click",()=>{
-navLinks.classList.toggle("active");
-});
-
-</script>
-
-<script>
-
-/* ==============================
-   SCROLL ANIMATION (AUTO)
-============================== */
-
-const cards = document.querySelectorAll('.murid-card');
+/* SCROLL ANIMATION */
 
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -204,44 +135,113 @@ if(entry.isIntersecting){
 entry.target.classList.add('show');
 }
 });
-},{
-threshold:0.15
-});
+},{threshold:.15});
 
-cards.forEach(card=>{
-observer.observe(card);
-});
+setTimeout(()=>{
+document.querySelectorAll('.murid-card')
+.forEach(card=>observer.observe(card));
+},300);
 
 
-/* ==============================
-   REAL 3D HOVER (FOLLOW CURSOR)
-============================== */
 
-cards.forEach(card=>{
+/* 3D HOVER */
 
-card.addEventListener('mousemove',(e)=>{
+document.addEventListener('mousemove', e=>{
+
+document.querySelectorAll('.murid-card').forEach(card=>{
 
 const rect = card.getBoundingClientRect();
 
 const x = e.clientX - rect.left;
 const y = e.clientY - rect.top;
 
-const centerX = rect.width / 2;
-const centerY = rect.height / 2;
+const centerX = rect.width/2;
+const centerY = rect.height/2;
 
-const rotateX = (y - centerY) / 12;
-const rotateY = (centerX - x) / 12;
+const rotateX = (y-centerY)/18;
+const rotateY = (centerX-x)/18;
 
+if(card.matches(':hover')){
 card.style.transform =
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
+}
 
 });
 
-card.addEventListener('mouseleave',()=>{
-card.style.transform = 'rotateX(0) rotateY(0) scale(1)';
 });
 
+document.addEventListener('mouseleave',()=>{
+document.querySelectorAll('.murid-card')
+.forEach(card=>{
+card.style.transform='rotateX(0) rotateY(0) scale(1)';
 });
+});
+
+
+
+/* CHAT */
+
+const toggle = document.getElementById('chatToggle');
+const chatBox = document.getElementById('chatBox');
+
+toggle.onclick=()=>chatBox.classList.toggle('show');
+
+document.getElementById('closeChat')
+.onclick=()=>chatBox.classList.remove('show');
+
+function sendMessage(){
+
+const input = document.getElementById('chatInput');
+const messages = document.getElementById('chatMessages');
+
+if(input.value.trim()==='') return;
+
+const msg = document.createElement('div');
+msg.className='message';
+msg.innerText=input.value;
+
+messages.appendChild(msg);
+
+messages.scrollTop=messages.scrollHeight;
+
+input.value='';
+
+saveMessages();
+}
+
+document.getElementById('chatInput')
+.addEventListener('keypress',e=>{
+if(e.key==='Enter') sendMessage();
+});
+
+
+function saveMessages(){
+
+const msgs=[];
+
+document.querySelectorAll('.message')
+.forEach(m=>msgs.push(m.innerText));
+
+localStorage.setItem('anonChat',JSON.stringify(msgs));
+}
+
+function loadMessages(){
+
+const data=JSON.parse(localStorage.getItem('anonChat'));
+if(!data) return;
+
+const messages=document.getElementById('chatMessages');
+
+data.forEach(text=>{
+const msg=document.createElement('div');
+msg.className='message';
+msg.innerText=text;
+messages.appendChild(msg);
+});
+
+}
+
+loadMessages();
 
 </script>
 
