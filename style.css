@@ -108,7 +108,7 @@ color:#111;
 
 .hero{
 height:100vh;
-background:url('kelas.jpg') center/cover fixed;
+background:url('background.png') center/cover fixed;
 display:flex;
 align-items:center;
 justify-content:center;
