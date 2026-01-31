@@ -7,10 +7,9 @@
 <title>Kelas Mahakam</title>
 
 <link rel="stylesheet" href="style.css">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-</head>
 
+</head>
 <body>
 
 <!-- NAVBAR -->
@@ -26,16 +25,16 @@
 
 <!-- HERO -->
 <section class="hero">
-
 <div class="hero-content">
+
 <h1>Kelas Mahakam</h1>
 <p>Website resmi kelas paling solid 😎</p>
 
-<img src="we-are-mahakam.png" class="hero-img">
+<img src="We Are Mahakam.jpg" class="hero-img">
 
 </div>
-
 </section>
+
 
 
 <!-- MURID -->
@@ -43,10 +42,43 @@
 
 <h2>Daftar Murid</h2>
 
-<div class="murid-grid">
+<div class="murid-grid" id="muridGrid"></div>
 
-<!-- DUPLIKASI CARD = otomatis grid -->
+</section>
+
+
+
+<!-- CHAT -->
+<div class="chat-toggle" id="chatToggle">💬</div>
+
+<div class="chat-box" id="chatBox">
+
+<div class="chat-header">
+Chat Anonim
+<span id="closeChat">✕</span>
+</div>
+
+<div class="chat-messages" id="chatMessages"></div>
+
+<div class="chat-input-area">
+<input type="text" id="chatInput" placeholder="Kirim pesan anonim..." maxlength="150">
+<button id="sendBtn">Kirim</button>
+</div>
+
+</div>
+
+
+
+<!-- =============================
+     SCRIPT WEBSITE
+============================= -->
+
 <script>
+
+/* ======================
+   DATA MURID AUTO
+====================== */
+
 const students = [
 "Adelia Felicia",
 "Afiqah Humayra Arresky",
@@ -71,51 +103,25 @@ const students = [
 "Syifa Fathiyah Zahra"
 ];
 
-document.write(
-students.map((name,i)=>`
+const grid = document.getElementById("muridGrid");
+
+students.forEach(name=>{
+grid.innerHTML += `
 <div class="murid-card">
 <div class="murid-img">
 <img src="student.jpg">
 </div>
 <h3>${name}</h3>
 </div>
-`).join('')
-);
-</script>
-
-</div>
-</section>
+`;
+});
 
 
-
-<!-- FLOATING CHAT -->
-
-<div class="chat-toggle" id="chatToggle">💬</div>
-
-<div class="chat-box" id="chatBox">
-
-<div class="chat-header">
-Chat Anonim
-<span id="closeChat">✕</span>
-</div>
-
-<div class="chat-messages" id="chatMessages"></div>
-
-<div class="chat-input-area">
-<input type="text" id="chatInput" placeholder="Kirim pesan..." maxlength="120">
-<button onclick="sendMessage()">Kirim</button>
-</div>
-
-</div>
-
-
-
-<script>
-
-/* NAVBAR SCROLL */
+/* ======================
+   NAVBAR SCROLL
+====================== */
 
 window.addEventListener('scroll',()=>{
-
 const nav = document.getElementById('navbar');
 
 if(window.scrollY > 50){
@@ -123,11 +129,12 @@ nav.classList.add('scrolled');
 }else{
 nav.classList.remove('scrolled');
 }
-
 });
 
 
-/* SCROLL ANIMATION */
+/* ======================
+   SCROLL ANIMATION
+====================== */
 
 const observer = new IntersectionObserver(entries=>{
 entries.forEach(entry=>{
@@ -140,15 +147,18 @@ entry.target.classList.add('show');
 setTimeout(()=>{
 document.querySelectorAll('.murid-card')
 .forEach(card=>observer.observe(card));
-},300);
+},400);
 
 
-
-/* 3D HOVER */
+/* ======================
+   3D HOVER
+====================== */
 
 document.addEventListener('mousemove', e=>{
 
 document.querySelectorAll('.murid-card').forEach(card=>{
+
+if(!card.matches(':hover')) return;
 
 const rect = card.getBoundingClientRect();
 
@@ -161,13 +171,10 @@ const centerY = rect.height/2;
 const rotateX = (y-centerY)/18;
 const rotateY = (centerX-x)/18;
 
-if(card.matches(':hover')){
 card.style.transform =
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.04)`;
-}
+`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
 
 });
-
 });
 
 document.addEventListener('mouseleave',()=>{
@@ -178,36 +185,73 @@ card.style.transform='rotateX(0) rotateY(0) scale(1)';
 });
 
 
-
-/* CHAT */
+/* ======================
+   OPEN CLOSE CHAT
+====================== */
 
 const toggle = document.getElementById('chatToggle');
 const chatBox = document.getElementById('chatBox');
+const closeChat = document.getElementById('closeChat');
 
-toggle.onclick=()=>chatBox.classList.toggle('show');
+toggle.onclick = () => chatBox.classList.toggle('show');
+closeChat.onclick = () => chatBox.classList.remove('show');
 
-document.getElementById('closeChat')
-.onclick=()=>chatBox.classList.remove('show');
+</script>
+
+
+
+<!-- =============================
+     FIREBASE REALTIME CHAT
+============================= -->
+
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+<script>
+
+/* ======================
+   MASUKKAN CONFIG KAMU
+====================== */
+
+const firebaseConfig = {
+    apiKey: "AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
+    authDomain: "chat-anonim-mahakam.firebaseapp.com",
+    projectId: "chat-anonim-mahakam",
+    storageBucket: "chat-anonim-mahakam.firebasestorage.app",
+    messagingSenderId: "270549776266",
+    appId: "1:270549776266:web:9f1eaf52c5aadb18577a73",
+    measurementId: "G-B2K5CCG9VL"
+};
+
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database().ref("anonChat");
+
+
+function formatTime(timestamp){
+const d = new Date(timestamp);
+return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
+}
+
+
+/* KIRIM */
 
 function sendMessage(){
 
 const input = document.getElementById('chatInput');
-const messages = document.getElementById('chatMessages');
+const text = input.value.trim();
 
-if(input.value.trim()==='') return;
+if(text === "") return;
 
-const msg = document.createElement('div');
-msg.className='message';
-msg.innerText=input.value;
-
-messages.appendChild(msg);
-
-messages.scrollTop=messages.scrollHeight;
+db.push({
+msg:text,
+time:Date.now()
+});
 
 input.value='';
-
-saveMessages();
 }
+
+document.getElementById('sendBtn').onclick = sendMessage;
 
 document.getElementById('chatInput')
 .addEventListener('keypress',e=>{
@@ -215,33 +259,26 @@ if(e.key==='Enter') sendMessage();
 });
 
 
-function saveMessages(){
+/* TERIMA REALTIME */
 
-const msgs=[];
+db.limitToLast(100).on("child_added", snapshot=>{
 
-document.querySelectorAll('.message')
-.forEach(m=>msgs.push(m.innerText));
+const data = snapshot.val();
 
-localStorage.setItem('anonChat',JSON.stringify(msgs));
-}
+const bubble = document.createElement("div");
+bubble.className="message";
 
-function loadMessages(){
+bubble.innerHTML = `
+${data.msg}
+<span class="message-time">${formatTime(data.time)}</span>
+`;
 
-const data=JSON.parse(localStorage.getItem('anonChat'));
-if(!data) return;
+const messages = document.getElementById('chatMessages');
 
-const messages=document.getElementById('chatMessages');
+messages.appendChild(bubble);
+messages.scrollTop = messages.scrollHeight;
 
-data.forEach(text=>{
-const msg=document.createElement('div');
-msg.className='message';
-msg.innerText=text;
-messages.appendChild(msg);
 });
-
-}
-
-loadMessages();
 
 </script>
 
