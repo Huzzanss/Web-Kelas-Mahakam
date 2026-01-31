@@ -13,16 +13,22 @@ background:#f6f7fb;
 
 .navbar{
 position:fixed;
+top:0;
+left:0;
 width:100%;
-padding:18px 40px;
+padding:20px 60px;
 display:flex;
 justify-content:space-between;
+align-items:center;
 z-index:999;
-transition:.3s;
+transition:.35s;
+
+color:white;
 }
 
 .navbar.scrolled{
-background:white;
+background:rgba(15,23,42,.85);
+backdrop-filter:blur(10px);
 box-shadow:0 5px 25px rgba(0,0,0,.08);
 }
 
@@ -30,6 +36,20 @@ box-shadow:0 5px 25px rgba(0,0,0,.08);
 font-weight:800;
 font-size:1.5rem;
 cursor:pointer;
+color:white;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+list-style:none;
+}
+
+.nav-links a{
+color:white;
+text-decoration:none;
+font-weight:600;
+position:relative;
 }
 
 /* HERO */
