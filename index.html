@@ -3,21 +3,21 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="favicon.png"/>
+
 <title>Kelas Mahakam</title>
 
 <link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-<div class="logo">Mahakam</div>
+<div class="logo" id="secretLogo">Mahakam</div>
 
 <ul class="nav-links">
 <li><a href="#">Beranda</a></li>
+<li><a href="#countdown">Kelulusan</a></li>
 <li><a href="#murid">Murid</a></li>
 </ul>
 </nav>
@@ -27,25 +27,63 @@
 <section class="hero">
 <div class="hero-content">
 
-<h1>Kelas Mahakam</h1>
-<p>Website resmi kelas paling solid 😎</p>
+<h1>MAHAKAM</h1>
+<p>bukan sekadar kelas.</p>
 
-<img src="we-are-mahakam.png" class="hero-img">
+<div class="spotlight" id="spotlight"></div>
 
 </div>
 </section>
 
 
+<!-- COUNTDOWN -->
+<section id="countdown" class="container center">
+<h2>Menuju Kelulusan</h2>
+
+<div class="count-grid">
+<div><span id="days">0</span><p>Hari</p></div>
+<div><span id="hours">0</span><p>Jam</p></div>
+<div><span id="minutes">0</span><p>Menit</p></div>
+<div><span id="seconds">0</span><p>Detik</p></div>
+</div>
+</section>
+
+
+<!-- TIMELINE -->
+<section class="container">
+<h2>Perjalanan Mahakam</h2>
+
+<div class="timeline">
+<div class="timeline-item">Masuk sebagai orang asing.</div>
+<div class="timeline-item">Mulai kenal satu sama lain.</div>
+<div class="timeline-item">Tertawa di setiap hari sekolah.</div>
+<div class="timeline-item">Dan segera... berpisah sebagai keluarga.</div>
+</div>
+</section>
+
+
+<!-- HALL OF FAME -->
+<section class="container">
+<h2>Hall of Fame</h2>
+
+<div class="hall-grid">
+<div class="hall-card">🔥 Paling Aktif</div>
+<div class="hall-card">😂 Paling Lucu</div>
+<div class="hall-card">📚 Paling Rajin</div>
+<div class="hall-card">⚡ Duo Legendaris</div>
+</div>
+</section>
+
 
 <!-- MURID -->
 <section id="murid" class="container">
-
 <h2>Daftar Murid</h2>
-
 <div class="murid-grid" id="muridGrid"></div>
-
 </section>
 
+
+<!-- VISITOR -->
+<div class="visitor" id="visitor"></div>
 
 
 <!-- CHAT -->
@@ -68,16 +106,13 @@ Chat Anonim
 </div>
 
 
+<!-- MUSIC -->
+<audio id="bgMusic"></audio>
 
-<!-- =============================
-     SCRIPT WEBSITE
-============================= -->
 
 <script>
 
-/* ======================
-   DATA MURID AUTO
-====================== */
+/* ================= STUDENTS ================= */
 
 const students = [
 "Adelia Felicia",
@@ -108,175 +143,143 @@ const grid = document.getElementById("muridGrid");
 students.forEach(name=>{
 grid.innerHTML += `
 <div class="murid-card">
-<div class="murid-img">
 <img src="student.jpg">
-</div>
 <h3>${name}</h3>
 </div>
 `;
 });
 
 
-/* ======================
-   NAVBAR SCROLL
-====================== */
+/* ================= RANDOM SPOTLIGHT ================= */
+
+const randomStudent =
+students[Math.floor(Math.random()*students.length)];
+
+document.getElementById("spotlight").innerHTML =
+`🔥 Hari ini: <b>${randomStudent}</b>`;
+
+
+/* ================= COUNTDOWN ================= */
+
+// GANTI TANGGAL KELULUSAN DI SINI
+const gradDate = new Date("June 1, 2027 00:00:00").getTime();
+
+setInterval(()=>{
+
+const now = new Date().getTime();
+const gap = gradDate - now;
+
+const d = Math.floor(gap / (1000*60*60*24));
+const h = Math.floor((gap % (1000*60*60*24))/(1000*60*60));
+const m = Math.floor((gap % (1000*60*60))/(1000*60));
+const s = Math.floor((gap % (1000*60))/1000);
+
+days.textContent=d;
+hours.textContent=h;
+minutes.textContent=m;
+seconds.textContent=s;
+
+},1000);
+
+
+/* ================= NAVBAR ================= */
 
 window.addEventListener('scroll',()=>{
-const nav = document.getElementById('navbar');
+navbar.classList.toggle('scrolled', window.scrollY>50);
+});
 
-if(window.scrollY > 50){
-nav.classList.add('scrolled');
-}else{
-nav.classList.remove('scrolled');
+
+/* ================= VISITOR COUNTER ================= */
+
+let count = localStorage.getItem("visitCount") || 0;
+count++;
+localStorage.setItem("visitCount",count);
+
+document.getElementById("visitor").innerText =
+`👀 ${count} kunjungan`;
+
+
+/* ================= SECRET PAGE ================= */
+
+let clicks = 0;
+
+secretLogo.onclick = ()=>{
+clicks++;
+
+if(clicks===5){
+window.location.href="secret.html"; // kosong dulu
 }
-});
+};
 
 
-/* ======================
-   SCROLL ANIMATION
-====================== */
+/* ================= MUSIC AUTO ================= */
 
-const observer = new IntersectionObserver(entries=>{
-entries.forEach(entry=>{
-if(entry.isIntersecting){
-entry.target.classList.add('show');
+const songs = [
+"music/song1.mp3",
+"music/song2.mp3",
+"music/song3.mp3"
+];
+
+const player = document.getElementById("bgMusic");
+let songIndex = 0;
+
+function playMusic(){
+player.src = songs[songIndex];
+player.volume = 0.2;
+player.play();
+
+player.onended = ()=>{
+songIndex = (songIndex+1) % songs.length;
+playMusic();
+};
 }
-});
-},{threshold:.15});
 
-setTimeout(()=>{
-document.querySelectorAll('.murid-card')
-.forEach(card=>observer.observe(card));
-},400);
+document.addEventListener("click", playMusic, {once:true});
 
 
-/* ======================
-   3D HOVER
-====================== */
+/* ================= CHAT UI ================= */
 
-document.addEventListener('mousemove', e=>{
-
-document.querySelectorAll('.murid-card').forEach(card=>{
-
-if(!card.matches(':hover')) return;
-
-const rect = card.getBoundingClientRect();
-
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-
-const centerX = rect.width/2;
-const centerY = rect.height/2;
-
-const rotateX = (y-centerY)/18;
-const rotateY = (centerX-x)/18;
-
-card.style.transform =
-`rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-
-});
-});
-
-document.addEventListener('mouseleave',()=>{
-document.querySelectorAll('.murid-card')
-.forEach(card=>{
-card.style.transform='rotateX(0) rotateY(0) scale(1)';
-});
-});
-
-
-/* ======================
-   OPEN CLOSE CHAT
-====================== */
-
-const toggle = document.getElementById('chatToggle');
-const chatBox = document.getElementById('chatBox');
-const closeChat = document.getElementById('closeChat');
-
-toggle.onclick = () => chatBox.classList.toggle('show');
-closeChat.onclick = () => chatBox.classList.remove('show');
+chatToggle.onclick = ()=>chatBox.classList.toggle('show');
+closeChat.onclick = ()=>chatBox.classList.remove('show');
 
 </script>
 
 
-
-<!-- =============================
-     FIREBASE REALTIME CHAT
-============================= -->
-
+<!-- FIREBASE (CHAT TETAP) -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
 <script>
 
-/* ======================
-   MASUKKAN CONFIG KAMU
-====================== */
-
 const firebaseConfig = {
-    apiKey: "AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
-    authDomain: "chat-anonim-mahakam.firebaseapp.com",
-    databaseURL: "https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app/",
-    projectId: "chat-anonim-mahakam",
-    storageBucket: "chat-anonim-mahakam.firebasestorage.app",
-    messagingSenderId: "270549776266",
-    appId: "1:270549776266:web:9f1eaf52c5aadb18577a73"
+apiKey: "ISI PUNYAMU",
+authDomain: "ISI",
+databaseURL: "ISI",
+projectId: "ISI"
 };
 
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database().ref("anonChat");
-
-
-function formatTime(timestamp){
-const d = new Date(timestamp);
-return d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'});
-}
-
-
-/* KIRIM */
 
 function sendMessage(){
 
-const input = document.getElementById('chatInput');
-const text = input.value.trim();
+const input = chatInput.value.trim();
+if(!input) return;
 
-if(text === "") return;
-
-db.push({
-msg:text,
-time:Date.now()
-});
-
-input.value='';
+db.push({msg:input,time:Date.now()});
+chatInput.value='';
 }
 
-document.getElementById('sendBtn').onclick = sendMessage;
+sendBtn.onclick=sendMessage;
 
-document.getElementById('chatInput')
-.addEventListener('keypress',e=>{
-if(e.key==='Enter') sendMessage();
-});
+db.limitToLast(100).on("child_added", snap=>{
 
+const data=snap.val();
 
-/* TERIMA REALTIME */
+chatMessages.innerHTML +=
+`<div class="message">${data.msg}</div>`;
 
-db.limitToLast(100).on("child_added", snapshot=>{
-
-const data = snapshot.val();
-
-const bubble = document.createElement("div");
-bubble.className="message";
-
-bubble.innerHTML = `
-${data.msg}
-<span class="message-time">${formatTime(data.time)}</span>
-`;
-
-const messages = document.getElementById('chatMessages');
-
-messages.appendChild(bubble);
-messages.scrollTop = messages.scrollHeight;
+chatMessages.scrollTop=chatMessages.scrollHeight;
 
 });
 
