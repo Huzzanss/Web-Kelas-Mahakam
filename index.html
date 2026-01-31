@@ -104,32 +104,6 @@ const students = [
 ];
 
 /* ======================
-   AUTO STUDENT CREDITS
-====================== */
-
-const creditBox = document.getElementById("studentCredits");
-
-students.forEach(name=>{
-const el = document.createElement("h3");
-el.textContent = name;
-creditBox.appendChild(el);
-});
-
-const grid = document.getElementById("muridGrid");
-
-students.forEach(name=>{
-grid.innerHTML += `
-<div class="murid-card">
-<div class="murid-img">
-<img src="student.jpg">
-</div>
-<h3>${name}</h3>
-</div>
-`;
-});
-
-
-/* ======================
    NAVBAR SCROLL
 ====================== */
 
