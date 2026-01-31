@@ -12,53 +12,68 @@
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-<div class="logo" id="secretLogo">MAHAKAM</div>
-<ul class="nav-links" id="navLinks">
-<li><a href="#">Beranda</a></li>
-<li><a href="#countdown">Kelulusan</a></li>
-<li><a href="#murid">Murid</a></li>
-</ul>
+  <div class="logo">Mahakam</div>
+  <ul class="nav-links">
+    <li><a href="#">Beranda</a></li>
+    <li><a href="#mood">Mood</a></li>
+    <li><a href="#poll">Polling</a></li>
+    <li><a href="#murid">Murid</a></li>
+  </ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-<div class="hero-content">
-<h1>MAHAKAM</h1>
-<p>bukan sekadar kelas.</p>
-<div class="spotlight">Hari Ini: <span id="todayStudent"></span></div>
+  <div class="hero-content">
+    <h1>MAHAKAM</h1>
+    <p>bukan sekadar kelas.</p>
+
+    <div class="generator">
+      <button id="genBtn">Kalau Mahakam adalah…</button>
+      <div id="genResult"></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE MOOD -->
+<section id="mood" class="container center">
+<h2>Live Mood Kelas</h2>
+
+<div class="mood-grid">
+  <button data-mood="😄">😄</button>
+  <button data-mood="😐">😐</button>
+  <button data-mood="😢">😢</button>
+  <button data-mood="🔥">🔥</button>
+</div>
+
+<div class="mood-result">
+Mood Terbanyak Hari Ini:
+<span id="topMood">-</span>
 </div>
 </section>
 
-<!-- COUNTDOWN -->
-<section id="countdown" class="container center">
-<h2>Menuju Kelulusan</h2>
-<div class="count-grid">
-<div><span id="days">0</span><p>Hari</p></div>
-<div><span id="hours">0</span><p>Jam</p></div>
-<div><span id="minutes">0</span><p>Menit</p></div>
-<div><span id="seconds">0</span><p>Detik</p></div>
+<!-- POLLING -->
+<section id="poll" class="container center">
+<h2>Polling Mingguan</h2>
+
+<p class="poll-question">
+Hal yang paling bakal kamu rindukan dari Mahakam?
+</p>
+
+<div class="poll-options">
+<button data-vote="Teman">Teman</button>
+<button data-vote="Tawa">Tawa</button>
+<button data-vote="Kelas">Kelas</button>
+<button data-vote="Kenangan">Kenangan</button>
 </div>
+
+<div class="poll-result" id="pollResult"></div>
 </section>
 
-<!-- TIMELINE -->
-<section class="container">
-<h2>Perjalanan Mahakam</h2>
-<div class="timeline">
-<div class="timeline-item">Masuk sebagai orang asing.</div>
-<div class="timeline-item">Mulai kenal satu sama lain.</div>
-<div class="timeline-item">Tertawa di setiap hari sekolah.</div>
-<div class="timeline-item">Berpisah sebagai keluarga.</div>
-</div>
-</section>
-
-<!-- HALL -->
-<section class="container">
-<h2>Hall of Fame</h2>
-<div class="hall-grid">
-<div class="hall-card">🤘 Paling Aktif<br><small>Alita</small></div>
-<div class="hall-card">😂 Paling Lucu<br><small>Azka & Aca</small></div>
-<div class="hall-card">📖 Paling Rajin<br><small>Hilmi</small></div>
-<div class="hall-card">⚡ Duo Legendaris<br><small>Hafidz × Dzaki</small></div>
+<!-- FINAL MESSAGE -->
+<section class="container center">
+<h2>Pesan Terakhir</h2>
+<div id="finalMessage" class="locked">
+⏳ Pesan ini akan terbuka mendekati kelulusan
 </div>
 </section>
 
@@ -68,249 +83,143 @@
 <div class="murid-grid" id="muridGrid"></div>
 </section>
 
-<!-- VISITOR -->
-<div class="visitor" id="visitor"></div>
-
 <!-- CHAT -->
 <div class="chat-toggle" id="chatToggle">💬</div>
 
 <div class="chat-box" id="chatBox">
-<div class="chat-header">
-Chat Anonim
-<span id="closeChat">✕</span>
+  <div class="chat-header">
+    Chat Anonim
+    <span id="closeChat">✕</span>
+  </div>
+
+  <div class="chat-messages" id="chatMessages"></div>
+
+  <div class="typing" id="typingStatus"></div>
+
+  <div class="chat-input-area">
+    <input type="text" id="chatInput" placeholder="Ketik pesan..." maxlength="150">
+    <button id="sendBtn">Kirim</button>
+  </div>
 </div>
-<div class="chat-messages" id="chatMessages"></div>
-  <div class="typing-indicator" id="typingIndicator">
-  Seseorang sedang mengetik...
-</div>
-<div class="chat-input-area">
-<input type="text" id="chatInput" placeholder="Kirim pesan anonim...">
-<button id="sendBtn">Kirim</button>
-</div>
-</div>
 
-<!-- MUSIC -->
-<audio id="bgMusic"></audio>
-
-<script>
-/* DATA MURID */
-const students=[
-"Adelia Felicia","Afiqah Humayra Arresky","Alexandra Shavira Kaysa",
-"Alisya Zella Naura Saputro","Alita Admiral","Aqillah Khayyirah",
-"Azima Zafeera Khairiya","Azka Aisy Muhammad Firdaus","Farrel Azka Firlana",
-"Fattah Altaf Qusyairi","Giovanny Syahputra","Gusti Muhammad An-Nafis",
-"Hilmi Muhammad Nidho Mudhin","Khalika Ismatullah Assahla",
-"Muhammad Abdurrahman Dzaki","Muhammad El Junot Razqal",
-"Muhammad Fahri Ardani","Muhammad Hafidz Setiadi",
-"Muhammad Juna Defa Alfarizie","Muhammad Zharif Syatir",
-"Syifa Fathiyah Zahra"
-];
-
-const grid=document.getElementById("muridGrid");
-students.forEach(n=>{
-grid.innerHTML+=`
-<div class="murid-card">
-<img src="student.png">
-<h3>${n}</h3>
-</div>`;
-});
-
-/* ================= COUNTDOWN WITA (UTC + 8) ================= */
-
-// KELULUSAN: 11 MEI 2026 JAM 10:00 WITA
-const gradDateWITA = Date.UTC(
-  2026, // tahun
-  4,    // bulan (MEI = 4)
-  11,   // tanggal
-  2,    // jam UTC (10:00 WITA = 02:00 UTC)
-  0,
-  0
-);
-
-function updateCountdown() {
-  const nowUTC = Date.now();
-  const nowWITA = nowUTC + (8 * 60 * 60 * 1000);
-  const gap = gradDateWITA - nowWITA;
-
-  if (gap <= 0) {
-    days.textContent = 0;
-    hours.textContent = 0;
-    minutes.textContent = 0;
-    seconds.textContent = 0;
-    return;
-  }
-
-  const d = Math.floor(gap / (1000 * 60 * 60 * 24));
-  const h = Math.floor((gap / (1000 * 60 * 60)) % 24);
-  const m = Math.floor((gap / (1000 * 60)) % 60);
-  const s = Math.floor((gap / 1000) % 60);
-
-  days.textContent = d;
-  hours.textContent = h;
-  minutes.textContent = m;
-  seconds.textContent = s;
-}
-
-setInterval(updateCountdown, 1000);
-updateCountdown();
-
-/* NAVBAR */
-window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",scrollY>40));
-secretLogo.onclick=()=>navLinks.classList.toggle("show");
-
-/* VISITOR */
-let v=localStorage.v||0;
-localStorage.v=++v;
-visitor.textContent="👀 "+v+" kunjungan";
-
-/* ================= MUSIC HP SAFE ================= */
-
-const songs = [
-  "music/Terbuang Dalam Waktu.mp3",
-  "music/Sency.mp3",
-  "music/song3.mp3"
-];
-
-const player = document.getElementById("bgMusic");
-let songIndex = 0;
-let started = false;
-
-function startMusic() {
-  if (started) return;
-  started = true;
-
-  player.src = songs[songIndex];
-  player.volume = 0.25;
-
-  const playPromise = player.play();
-  if (playPromise !== undefined) {
-    playPromise.catch(() => {
-      // kalau masih diblok, tunggu tap berikutnya
-      started = false;
-    });
-  }
-
-  player.onended = () => {
-    songIndex = (songIndex + 1) % songs.length;
-    player.src = songs[songIndex];
-    player.play();
-  };
-}
-
-/* ⚠️ EVENT WAJIB DI HP */
-document.addEventListener("touchstart", startMusic, { once:true });
-document.addEventListener("click", startMusic, { once:true });
-
-/* CHAT UI */
-chatToggle.onclick = () => {
-chatBox.classList.toggle('show');
-setTimeout(()=>chatInput.focus(),300);
-};
-
-closeChat.onclick = () => chatBox.classList.remove('show');
-
-</script>
-
-<!-- FIREBASE CHAT -->
+<!-- FIREBASE -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
 <script>
-firebase.initializeApp({
-apiKey:"AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
-databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app"
+/* ================= FIREBASE CONFIG ================= */
+const firebaseConfig = {
+  apiKey: "AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
+  authDomain: "chat-anonim-mahakam.firebaseapp.com",
+  databaseURL: "https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "chat-anonim-mahakam",
+  storageBucket: "chat-anonim-mahakam.firebasestorage.app",
+  messagingSenderId: "270549776266",
+  appId: "1:270549776266:web:9f1eaf52c5aadb18577a73"
+};
+firebase.initializeApp(firebaseConfig);
+
+const db = firebase.database();
+
+/* ================= NAVBAR ================= */
+window.addEventListener("scroll",()=>{
+  navbar.classList.toggle("scrolled",window.scrollY>40);
 });
-const chatInput = document.getElementById("chatInput");
-const sendBtn = document.getElementById("sendBtn");
-const chatMessages = document.getElementById("chatMessages");
 
-const db = firebase.database().ref("anonChat");
-const typingRef = firebase.database().ref("typing");
+/* ================= STUDENTS ================= */
+const students = [
+"Adelia Felicia","Afiqah Humayra Arresky","Alexandra Shavira Kaysa",
+"Alisya Zella Naura Saputro","Alita Admiral","Aqillah Khayyirah",
+"Azima Zafeera Khairiya","Azka Aisy Muhammad Firdaus",
+"Farrel Azka Firlana","Fattah Altaf Qusyairi","Giovanny Syahputra",
+"Gusti Muhammad An-Nafis","Hilmi Muhammad Nidho Mudhin",
+"Khalika Ismatullah Assahla","Muhammad Abdurrahman Dzaki",
+"Muhammad El Junot Razqal","Muhammad Fahri Ardani",
+"Muhammad Hafidz Setiadi","Muhammad Juna Defa Alfarizie",
+"Muhammad Zharif Syatir","Syifa Fathiyah Zahra"
+];
 
-/* ================= KIRIM PESAN ================= */
-function sendMessage() {
-  const text = chatInput.value.trim();
-  if (!text) return;
+muridGrid.innerHTML = students.map(n=>`
+<div class="murid-card">
+<img src="student.jpg">
+<h3>${n}</h3>
+</div>`).join("");
 
-  db.push({
-    msg: text,
-    time: Date.now()
-  });
+/* ================= GENERATOR ================= */
+const phrases=[
+"film coming-of-age 🎬",
+"lagu yang gak pengen selesai 🎵",
+"rumah kedua 🏠",
+"cerita yang bakal diceritain lagi 🕰️",
+"kenangan seumur hidup 💙"
+];
+genBtn.onclick=()=>{
+  genResult.textContent="Mahakam adalah "+phrases[Math.floor(Math.random()*phrases.length)];
+};
 
-  chatInput.value = "";
-  typingRef.set(false);
+/* ================= LIVE MOOD ================= */
+const moodRef=db.ref("mood/"+new Date().toDateString());
+
+document.querySelectorAll(".mood-grid button").forEach(btn=>{
+btn.onclick=()=>{
+  moodRef.child(btn.dataset.mood).transaction(v=>(v||0)+1);
+};
+});
+
+moodRef.on("value",snap=>{
+let max=0,top="-";
+snap.forEach(c=>{
+if(c.val()>max){max=c.val();top=c.key;}
+});
+topMood.textContent=top;
+});
+
+/* ================= POLLING ================= */
+const pollRef=db.ref("poll");
+
+document.querySelectorAll(".poll-options button").forEach(btn=>{
+btn.onclick=()=>{
+pollRef.child(btn.dataset.vote).transaction(v=>(v||0)+1);
+};
+});
+
+pollRef.on("value",snap=>{
+let html="";
+snap.forEach(c=>{
+html+=`${c.key}: ${c.val()} suara<br>`;
+});
+pollResult.innerHTML=html;
+});
+
+/* ================= FINAL MESSAGE ================= */
+const gradDate=new Date("May 11, 2026 00:00:00 GMT+0800").getTime();
+setInterval(()=>{
+if(Date.now()>gradDate-1000*60*60*24*7){
+finalMessage.classList.remove("locked");
+finalMessage.textContent="Terima kasih sudah jadi Mahakam. Kalian keluarga. 💙";
 }
+},1000);
 
-/* KLIK BUTTON */
-sendBtn.addEventListener("click", sendMessage);
+/* ================= CHAT ================= */
+const chatRef=db.ref("chat");
 
-/* ENTER */
-chatInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") sendMessage();
+sendBtn.onclick=()=>{
+if(!chatInput.value) return;
+chatRef.push({msg:chatInput.value,time:Date.now()});
+chatInput.value="";
+};
+
+chatRef.limitToLast(100).on("child_added",s=>{
+const d=s.val();
+chatMessages.innerHTML+=`<div class="message">
+${d.msg}
+<span>${new Date(d.time).toLocaleTimeString()}</span>
+</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
 });
 
-/* ================= TERIMA PESAN ================= */
-db.limitToLast(100).on("child_added", snap => {
-  const data = snap.val();
-
-  const time = new Date(data.time).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit"
-  });
-
-  const bubble = document.createElement("div");
-  bubble.className = "message";
-  bubble.innerHTML = `
-    ${data.msg}
-    <span class="message-time">${time}</span>
-  `;
-
-  chatMessages.appendChild(bubble);
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
-/* ================= TYPING INDICATOR ================= */
-let typingTimeout;
-
-chatInput.addEventListener("input", () => {
-  typingRef.set(true);
-  clearTimeout(typingTimeout);
-  typingTimeout = setTimeout(() => {
-    typingRef.set(false);
-  }, 1200);
-});
-
-typingRef.on("value", snap => {
-  document.getElementById("typingIndicator").style.display =
-    snap.val() ? "block" : "none";
-});
-document.addEventListener("DOMContentLoaded", () => {
-
-  const todayStudentEl = document.getElementById("todayStudent");
-  if (!todayStudentEl) return;
-
-  const spotlightRef = firebase.database().ref("spotlight");
-  const today = new Date().toISOString().split("T")[0];
-
-  spotlightRef.once("value").then(snapshot => {
-    const data = snapshot.val();
-
-    if (!data || data.date !== today) {
-      const randomIndex = Math.floor(Math.random() * students.length);
-      const chosenStudent = students[randomIndex];
-
-      spotlightRef.set({
-        name: chosenStudent,
-        date: today
-      });
-
-      todayStudentEl.textContent = chosenStudent;
-    } else {
-      todayStudentEl.textContent = data.name;
-    }
-  });
-
-});
-
+chatToggle.onclick=()=>chatBox.classList.toggle("show");
+closeChat.onclick=()=>chatBox.classList.remove("show");
 </script>
 
 </body>
