@@ -6,38 +6,26 @@
 <title>Kelas Mahakam</title>
 
 <link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- NAVBAR -->
-<nav class="navbar" id="navbar">
+<nav class="navbar">
   <div class="logo">Mahakam</div>
-  <ul class="nav-links">
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#countdown">Kelulusan</a></li>
-    <li><a href="#mood">Mood</a></li>
-    <li><a href="#murid">Murid</a></li>
-  </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>MAHAKAM</h1>
-    <p>bukan sekadar kelas.</p>
+  <h1>MAHAKAM</h1>
+  <p>bukan sekadar kelas.</p>
 
-    <div class="generator">
-      <button id="genBtn">Kalau Mahakam adalah…</button>
-      <div id="genResult"></div>
-    </div>
+  <div class="spotlight">
+    Hari ini: <span id="todayStudent">-</span>
   </div>
 </section>
 
 <!-- COUNTDOWN -->
-<section id="countdown" class="container center">
+<section class="container center">
   <h2>Menuju Kelulusan</h2>
-
   <div class="count-grid">
     <div><span id="days">0</span><p>Hari</p></div>
     <div><span id="hours">0</span><p>Jam</p></div>
@@ -47,41 +35,38 @@
 </section>
 
 <!-- LIVE MOOD -->
-<section id="mood" class="container center">
-<h2>Live Mood Kelas</h2>
-
+<section class="container center">
+<h2>Mood Kelas Hari Ini</h2>
 <div class="mood-grid">
-  <button data-mood="😄">😄</button>
-  <button data-mood="😐">😐</button>
-  <button data-mood="😢">😢</button>
-  <button data-mood="🔥">🔥</button>
+<button data-mood="🔥">🔥</button>
+<button data-mood="😂">😂</button>
+<button data-mood="😴">😴</button>
+<button data-mood="😎">😎</button>
 </div>
-
-<div class="mood-result">
-Mood Terbanyak Hari Ini:
-<span id="topMood">-</span>
-</div>
+<p id="topMood"></p>
 </section>
 
-<!-- MURID -->
-<section id="murid" class="container">
-<h2>Daftar Murid</h2>
-<div class="murid-grid" id="muridGrid"></div>
+<!-- GENERATOR -->
+<section class="container center">
+<h2>Kalau Mahakam Adalah…</h2>
+<button onclick="generateMahakam()">Generate</button>
+<p id="mahakamResult"></p>
 </section>
+
+<!-- FINAL MESSAGE -->
+<div id="finalMessage" class="final-message">
+💙 Tinggal hitungan hari.<br>
+Mahakam akan selalu hidup di ingatan.
+</div>
 
 <!-- CHAT -->
 <div class="chat-toggle" id="chatToggle">💬</div>
-
 <div class="chat-box" id="chatBox">
-  <div class="chat-header">
-    Chat Anonim
-    <span id="closeChat">✕</span>
-  </div>
-
+  <div class="chat-header">Chat Anonim</div>
   <div class="chat-messages" id="chatMessages"></div>
-
-  <div class="chat-input-area">
-    <input type="text" id="chatInput" placeholder="Ketik pesan..." maxlength="150">
+  <div class="typing" id="typing"></div>
+  <div class="chat-input">
+    <input id="chatInput" placeholder="Ketik pesan...">
     <button id="sendBtn">Kirim</button>
   </div>
 </div>
@@ -90,108 +75,9 @@ Mood Terbanyak Hari Ini:
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<script>
-/* ================= FIREBASE ================= */
-const firebaseConfig = {
-  apiKey: "AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
-  authDomain: "chat-anonim-mahakam.firebaseapp.com",
-  databaseURL: "https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "chat-anonim-mahakam",
-  storageBucket: "chat-anonim-mahakam.firebasestorage.app",
-  messagingSenderId: "270549776266",
-  appId: "1:270549776266:web:9f1eaf52c5aadb18577a73",
-  measurementId: "G-B2K5CCG9VL"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
-
-/* ================= NAVBAR ================= */
-window.addEventListener("scroll",()=>{
-  navbar.classList.toggle("scrolled",window.scrollY>40);
-});
-
-/* ================= STUDENTS ================= */
-const students = [
-"Adelia Felicia","Afiqah Humayra Arresky","Alexandra Shavira Kaysa",
-"Alisya Zella Naura Saputro","Alita Admiral","Aqillah Khayyirah",
-"Azima Zafeera Khairiya","Azka Aisy Muhammad Firdaus",
-"Farrel Azka Firlana","Fattah Altaf Qusyairi","Giovanny Syahputra",
-"Gusti Muhammad An-Nafis","Hilmi Muhammad Nidho Mudhin",
-"Khalika Ismatullah Assahla","Muhammad Abdurrahman Dzaki",
-"Muhammad El Junot Razqal","Muhammad Fahri Ardani",
-"Muhammad Hafidz Setiadi","Muhammad Juna Defa Alfarizie",
-"Muhammad Zharif Syatir","Syifa Fathiyah Zahra"
-];
-
-muridGrid.innerHTML = students.map(n=>`
-<div class="murid-card">
-<img src="student.png">
-<h3>${n}</h3>
-</div>`).join("");
-
-/* ================= GENERATOR ================= */
-const phrases=[
-"film coming-of-age 🎬",
-"lagu yang gak pengen selesai 🎵",
-"rumah kedua 🏠",
-"cerita yang bakal diceritain lagi 🕰️",
-"kenangan seumur hidup 💙"
-];
-genBtn.onclick=()=>{
-  genResult.textContent="Mahakam adalah "+phrases[Math.floor(Math.random()*phrases.length)];
-};
-
-/* ================= COUNTDOWN (11 MEI JAM 10 WITA) ================= */
-const gradDate = new Date("2026-05-11T10:00:00+08:00").getTime();
-
-setInterval(()=>{
-  const now = new Date().getTime();
-  const gap = gradDate - now;
-
-  if(gap <= 0){
-    days.textContent=0;
-    hours.textContent=0;
-    minutes.textContent=0;
-    seconds.textContent=0;
-    return;
-  }
-
-  days.textContent = Math.floor(gap/(1000*60*60*24));
-  hours.textContent = Math.floor((gap%(1000*60*60*24))/(1000*60*60));
-  minutes.textContent = Math.floor((gap%(1000*60*60))/(1000*60));
-  seconds.textContent = Math.floor((gap%(1000*60))/1000);
-},1000);
-
-/* ================= LIVE MOOD ================= */
-const moodRef=db.ref("mood/"+new Date().toDateString());
-document.querySelectorAll(".mood-grid button").forEach(btn=>{
-  btn.onclick=()=>moodRef.child(btn.dataset.mood).transaction(v=>(v||0)+1);
-});
-moodRef.on("value",snap=>{
-  let max=0,top="-";
-  snap.forEach(c=>{if(c.val()>max){max=c.val();top=c.key;}});
-  topMood.textContent=top;
-});
-
-/* ================= CHAT ================= */
-const chatRef=db.ref("chat");
-sendBtn.onclick=()=>{
-  if(!chatInput.value) return;
-  chatRef.push({msg:chatInput.value,time:Date.now()});
-  chatInput.value="";
-};
-chatRef.limitToLast(100).on("child_added",s=>{
-  const d=s.val();
-  chatMessages.innerHTML+=`
-  <div class="message">
-    ${d.msg}
-    <span>${new Date(d.time).toLocaleTimeString()}</span>
-  </div>`;
-  chatMessages.scrollTop=chatMessages.scrollHeight;
-});
-chatToggle.onclick=()=>chatBox.classList.toggle("show");
-closeChat.onclick=()=>chatBox.classList.remove("show");
-</script>
+<script src="firebase.js"></script>
+<script src="features.js"></script>
+<script src="chat.js"></script>
 
 </body>
 </html>
