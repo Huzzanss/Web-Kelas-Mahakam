@@ -190,13 +190,32 @@ databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebaseda
 const db=firebase.database().ref("anonChat");
 sendBtn.onclick=()=>{
 if(chatInput.value.trim()){
-db.push({msg:chatInput.value});
+db.push({
+  msg: input,
+  time: Date.now()
+});
 chatInput.value="";
 }
 }
-db.limitToLast(100).on("child_added",s=>{
-chatMessages.innerHTML+=`<div class="message">${s.val().msg}</div>`;
-chatMessages.scrollTop=chatMessages.scrollHeight;
+db.limitToLast(100).on("child_added", snap => {
+
+  const data = snap.val();
+
+  const time = new Date(data.time).toLocaleTimeString([], {
+    hour: '2-digit',
+    minute: '2-digit'
+  });
+
+  const bubble = document.createElement("div");
+  bubble.className = "message";
+
+  bubble.innerHTML = `
+    ${data.msg}
+    <span class="message-time">${time}</span>
+  `;
+
+  chatMessages.appendChild(bubble);
+  chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
 document.addEventListener("DOMContentLoaded", () => {
