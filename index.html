@@ -12,62 +12,60 @@
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
-  <div class="logo" id="secretLogo">Mahakam</div>
-  <ul class="nav-links">
-    <li><a href="#">Beranda</a></li>
-    <li><a href="#countdown">Kelulusan</a></li>
-    <li><a href="#murid">Murid</a></li>
-  </ul>
+<div class="logo" id="secretLogo">MAHAKAM</div>
+<ul class="nav-links" id="navLinks">
+<li><a href="#">Beranda</a></li>
+<li><a href="#countdown">Kelulusan</a></li>
+<li><a href="#murid">Murid</a></li>
+</ul>
 </nav>
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <h1>MAHAKAM</h1>
-    <p>bukan sekadar kelas.</p>
-    <div class="spotlight">
-      Hari Ini: <span id="todayStudent"></span>
-    </div>
-  </div>
+<div class="hero-content">
+<h1>MAHAKAM</h1>
+<p>bukan sekadar kelas.</p>
+<div class="spotlight">Hari Ini: <span id="todayStudent"></span></div>
+</div>
 </section>
 
 <!-- COUNTDOWN -->
 <section id="countdown" class="container center">
-  <h2>Menuju Kelulusan</h2>
-  <div class="count-grid">
-    <div><span id="days">0</span><p>Hari</p></div>
-    <div><span id="hours">0</span><p>Jam</p></div>
-    <div><span id="minutes">0</span><p>Menit</p></div>
-    <div><span id="seconds">0</span><p>Detik</p></div>
-  </div>
+<h2>Menuju Kelulusan</h2>
+<div class="count-grid">
+<div><span id="days">0</span><p>Hari</p></div>
+<div><span id="hours">0</span><p>Jam</p></div>
+<div><span id="minutes">0</span><p>Menit</p></div>
+<div><span id="seconds">0</span><p>Detik</p></div>
+</div>
 </section>
 
 <!-- TIMELINE -->
 <section class="container">
-  <h2>Perjalanan Mahakam</h2>
-  <div class="timeline">
-    <div class="timeline-item">Masuk sebagai orang asing.</div>
-    <div class="timeline-item">Mulai kenal satu sama lain.</div>
-    <div class="timeline-item">Tertawa di setiap hari sekolah.</div>
-    <div class="timeline-item">Dan segera… berpisah sebagai keluarga.</div>
-  </div>
+<h2>Perjalanan Mahakam</h2>
+<div class="timeline">
+<div class="timeline-item">Masuk sebagai orang asing.</div>
+<div class="timeline-item">Mulai kenal satu sama lain.</div>
+<div class="timeline-item">Tertawa di setiap hari sekolah.</div>
+<div class="timeline-item">Berpisah sebagai keluarga.</div>
+</div>
 </section>
 
-<!-- HALL OF FAME -->
+<!-- HALL -->
 <section class="container">
-  <h2>Hall of Fame</h2>
-  <div class="hall-grid">
-    <div class="hall-card">🤘 Paling Aktif<p>Alita</p></div>
-    <div class="hall-card">😂 Paling Lucu<p>Azka</p><p>Aca</p></div>
-    <div class="hall-card">📖 Paling Rajin<p>Hilmi</p></div>
-    <div class="hall-card">⚡ Duo Legendaris<p>Hafidz X Dzaki</p><p>Syatir X Gio</p></div>
-  </div>
+<h2>Hall of Fame</h2>
+<div class="hall-grid">
+<div class="hall-card">🤘 Paling Aktif<br><small>Alita</small></div>
+<div class="hall-card">😂 Paling Lucu<br><small>Azka & Aca</small></div>
+<div class="hall-card">📖 Paling Rajin<br><small>Hilmi</small></div>
+<div class="hall-card">⚡ Duo Legendaris<br><small>Hafidz × Dzaki</small></div>
+</div>
 </section>
 
 <!-- MURID -->
 <section id="murid" class="container">
-  <h2>Daftar Murid</h2>
-  <div class="murid-grid" id="muridGrid"></div>
+<h2>Daftar Murid</h2>
+<div class="murid-grid" id="muridGrid"></div>
 </section>
 
 <!-- VISITOR -->
@@ -77,84 +75,78 @@
 <div class="chat-toggle" id="chatToggle">💬</div>
 
 <div class="chat-box" id="chatBox">
-  <div class="chat-header">
-    Chat Anonim
-    <span id="closeChat">✕</span>
-  </div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="chat-input-area">
-    <input type="text" id="chatInput" placeholder="Kirim pesan anonim..." maxlength="150">
-    <button id="sendBtn">Kirim</button>
-  </div>
+<div class="chat-header">
+Chat Anonim
+<span id="closeChat">✕</span>
+</div>
+<div class="chat-messages" id="chatMessages"></div>
+<div class="chat-input-area">
+<input type="text" id="chatInput" placeholder="Kirim pesan anonim...">
+<button id="sendBtn">Kirim</button>
+</div>
 </div>
 
+<!-- MUSIC -->
 <audio id="bgMusic"></audio>
 
 <script>
-/* STUDENTS */
-const students = [
+/* DATA MURID */
+const students=[
 "Adelia Felicia","Afiqah Humayra Arresky","Alexandra Shavira Kaysa",
 "Alisya Zella Naura Saputro","Alita Admiral","Aqillah Khayyirah",
-"Azima Zafeera Khairiya","Azka Aisy Muhammad Firdaus",
-"Farrel Azka Firlana","Fattah Altaf Qusyairi","Giovanny Syahputra",
-"Gusti Muhammad An-Nafis","Hilmi Muhammad Nidho Mudhin",
-"Khalika Ismatullah Assahla","Muhammad Abdurrahman Dzaki",
-"Muhammad El Junot Razqal","Muhammad Fahri Ardani",
-"Muhammad Hafidz Setiadi","Muhammad Juna Defa Alfarizie",
-"Muhammad Zharif Syatir","Syifa Fathiyah Zahra"
+"Azima Zafeera Khairiya","Azka Aisy Muhammad Firdaus","Farrel Azka Firlana",
+"Fattah Altaf Qusyairi","Giovanny Syahputra","Gusti Muhammad An-Nafis",
+"Hilmi Muhammad Nidho Mudhin","Khalika Ismatullah Assahla",
+"Muhammad Abdurrahman Dzaki","Muhammad El Junot Razqal",
+"Muhammad Fahri Ardani","Muhammad Hafidz Setiadi",
+"Muhammad Juna Defa Alfarizie","Muhammad Zharif Syatir",
+"Syifa Fathiyah Zahra"
 ];
 
-const grid = document.getElementById("muridGrid");
+const grid=document.getElementById("muridGrid");
 students.forEach(n=>{
-  grid.innerHTML += `
-  <div class="murid-card">
-    <img src="student.jpg">
-    <h3>${n}</h3>
-  </div>`;
+grid.innerHTML+=`
+<div class="murid-card">
+<img src="student.jpg">
+<h3>${n}</h3>
+</div>`;
 });
 
-/* RANDOM STUDENT */
-const key = new Date().toDateString();
-let today = localStorage.getItem("todayStudent");
-if(localStorage.getItem("studentDate")!==key){
-  today = students[Math.floor(Math.random()*students.length)];
-  localStorage.setItem("todayStudent",today);
-  localStorage.setItem("studentDate",key);
+/* RANDOM HARIAN (TIDAK BERUBAH SAAT REFRESH) */
+const key=new Date().toDateString();
+if(localStorage.day!==key){
+localStorage.day=key;
+localStorage.today=students[Math.floor(Math.random()*students.length)];
 }
-todayStudent.textContent = today;
+todayStudent.textContent=localStorage.today;
 
 /* COUNTDOWN */
-const gradDate = new Date("June 11, 2026 10:00:00").getTime();
+const grad=new Date("June 11, 2026 10:00:00").getTime();
 setInterval(()=>{
-  const gap = gradDate - new Date().getTime();
-  days.textContent = Math.floor(gap/86400000);
-  hours.textContent = Math.floor((gap%86400000)/3600000);
-  minutes.textContent = Math.floor((gap%3600000)/60000);
-  seconds.textContent = Math.floor((gap%60000)/1000);
+const g=grad-Date.now();
+days.textContent=Math.floor(g/86400000);
+hours.textContent=Math.floor(g%86400000/3600000);
+minutes.textContent=Math.floor(g%3600000/60000);
+seconds.textContent=Math.floor(g%60000/1000);
 },1000);
 
 /* NAVBAR */
-window.addEventListener("scroll",()=>{
-  navbar.classList.toggle("scrolled",scrollY>50);
-});
+window.addEventListener("scroll",()=>navbar.classList.toggle("scrolled",scrollY>40));
+secretLogo.onclick=()=>navLinks.classList.toggle("show");
 
 /* VISITOR */
-let v = localStorage.getItem("visitCount")||0;
-v++; localStorage.setItem("visitCount",v);
-visitor.textContent = `👀 ${v} kunjungan`;
-
-/* SECRET */
-let c=0;
-secretLogo.onclick=()=>{ if(++c===5)location.href="secret.html"; }
+let v=localStorage.v||0;
+localStorage.v=++v;
+visitor.textContent="👀 "+v+" kunjungan";
 
 /* MUSIC */
-const songs=["music/1.mp3","music/2.mp3"];
+const songs=["music/1.mp3","music/2.mp3","music/3.mp3"];
 let i=0;
 bgMusic.volume=.2;
 document.addEventListener("click",()=>{
-  bgMusic.src=songs[i];
-  bgMusic.play();
-  bgMusic.onended=()=>{i=(i+1)%songs.length;bgMusic.src=songs[i];bgMusic.play();}
+bgMusic.src=songs[i];
+bgMusic.play();
+bgMusic.onended=()=>{i=(i+1)%songs.length;bgMusic.src=songs[i];bgMusic.play();}
 },{once:true});
 
 /* CHAT UI */
@@ -162,24 +154,24 @@ chatToggle.onclick=()=>chatBox.classList.toggle("show");
 closeChat.onclick=()=>chatBox.classList.remove("show");
 </script>
 
+<!-- FIREBASE CHAT -->
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 <script>
 firebase.initializeApp({
-  apiKey:"AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
-  databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app"
+apiKey:"AIzaSyDRMsEApnYGiloej-IYoY6mEpvMt6iRZlc",
+databaseURL:"https://chat-anonim-mahakam-default-rtdb.asia-southeast1.firebasedatabase.app"
 });
 const db=firebase.database().ref("anonChat");
-
 sendBtn.onclick=()=>{
-  if(!chatInput.value.trim())return;
-  db.push({msg:chatInput.value});
-  chatInput.value="";
-};
-
+if(chatInput.value.trim()){
+db.push({msg:chatInput.value});
+chatInput.value="";
+}
+}
 db.limitToLast(100).on("child_added",s=>{
-  chatMessages.innerHTML+=`<div class="message">${s.val().msg}</div>`;
-  chatMessages.scrollTop=chatMessages.scrollHeight;
+chatMessages.innerHTML+=`<div class="message">${s.val().msg}</div>`;
+chatMessages.scrollTop=chatMessages.scrollHeight;
 });
 </script>
 
