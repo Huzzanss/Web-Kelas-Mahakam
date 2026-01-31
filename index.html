@@ -115,24 +115,28 @@ grid.innerHTML+=`
 </div>`;
 });
 
-/* ================= COUNTDOWN GMT+8 ================= */
+/* ================= COUNTDOWN WITA (UTC + 8) ================= */
 
-// TANGGAL KELULUSAN (GMT+8)
-const gradDateGMT8 = Date.UTC(2026, 4, 11, 2, 0, 0);
-// Penjelasan:
-// Bulan = 4 (Mei, karena mulai dari 0)
-// 02:00 UTC = 10:00 GMT+8
+// KELULUSAN: 11 MEI 2026 JAM 10:00 WITA
+const gradDateWITA = Date.UTC(
+  2026, // tahun
+  4,    // bulan (MEI = 4)
+  11,   // tanggal
+  2,    // jam UTC (10:00 WITA = 02:00 UTC)
+  0,
+  0
+);
 
 function updateCountdown() {
-
   const nowUTC = Date.now();
-  const nowGMT8 = nowUTC + (8 * 60 * 60 * 1000);
-
-  const gap = gradDateGMT8 - nowGMT8;
+  const nowWITA = nowUTC + (8 * 60 * 60 * 1000);
+  const gap = gradDateWITA - nowWITA;
 
   if (gap <= 0) {
-    days.textContent = hours.textContent =
-    minutes.textContent = seconds.textContent = 0;
+    days.textContent = 0;
+    hours.textContent = 0;
+    minutes.textContent = 0;
+    seconds.textContent = 0;
     return;
   }
 
