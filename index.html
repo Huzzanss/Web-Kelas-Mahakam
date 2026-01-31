@@ -170,8 +170,13 @@ document.addEventListener("touchstart", startMusic, { once:true });
 document.addEventListener("click", startMusic, { once:true });
 
 /* CHAT UI */
-chatToggle.onclick=()=>chatBox.classList.toggle("show");
-closeChat.onclick=()=>chatBox.classList.remove("show");
+chatToggle.onclick = () => {
+chatBox.classList.toggle('show');
+setTimeout(()=>chatInput.focus(),300);
+};
+
+closeChat.onclick = () => chatBox.classList.remove('show');
+
 </script>
 
 <!-- FIREBASE CHAT -->
