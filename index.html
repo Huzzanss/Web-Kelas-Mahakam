@@ -30,7 +30,7 @@
 <h1>Kelas Mahakam</h1>
 <p>Website resmi kelas paling solid 😎</p>
 
-<img src="we-are-wahakam.png" class="hero-img">
+<img src="We Are Mahakam.jpg" class="hero-img">
 
 </div>
 </section>
@@ -102,6 +102,20 @@ const students = [
 "Muhammad Zharif Syatir",
 "Syifa Fathiyah Zahra"
 ];
+
+const grid = document.getElementById("muridGrid");
+
+students.forEach(name=>{
+grid.innerHTML += `
+<div class="murid-card">
+<div class="murid-img">
+<img src="student.jpg">
+</div>
+<h3>${name}</h3>
+</div>
+`;
+});
+
 
 /* ======================
    NAVBAR SCROLL
