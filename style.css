@@ -95,6 +95,40 @@ margin-bottom:8px;
 .chat-input-area input{flex:1;border:none;padding:8px}
 .chat-input-area button{border:none;background:#2563eb;color:white;padding:8px}
 
+/* COUNTDOWN */
+.count-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:20px;
+  margin-top:40px;
+}
+
+.count-grid div{
+  background:white;
+  padding:25px;
+  border-radius:18px;
+  box-shadow:0 15px 35px rgba(0,0,0,.08);
+}
+
+.count-grid span{
+  font-size:3rem;
+  font-weight:800;
+  color:#0f172a;
+}
+
+.count-grid p{
+  margin-top:5px;
+  font-weight:600;
+  opacity:.7;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+  .count-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+}
+
 /* MOBILE */
 @media(max-width:768px){
 .hero h1{font-size:2.5rem}
