@@ -20,7 +20,7 @@ const db = firebase.database();
 /* ══════════════════════════════════════
    COUNTDOWN — 13 Mei 2026
 ══════════════════════════════════════ */
-const GRAD_DATE = new Date("2026-05-13T08:00:00+08:00").getTime();
+const GRAD_DATE = new Date("2026-05-13T00:00:00+08:00").getTime();
 
 const elDays    = document.getElementById("days");
 const elHours   = document.getElementById("hours");
