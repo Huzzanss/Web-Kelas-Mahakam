@@ -1,89 +1,136 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kelas Mahakam</title>
-
-<link rel="stylesheet" href="style.css">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelas Mahakam — Angkatan XVI</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<nav class="navbar">
-  <div class="logo">Mahakam</div>
-</nav>
+  <!-- ─── Navbar ─── -->
+  <nav class="navbar">
+    <div class="logo">Maha<em>kam</em></div>
+    <div class="nav-links">
+      <a href="#countdown">🎓 Wisuda</a>
+      <a href="#murid">Murid</a>
+      <a href="#mood">Mood</a>
+      <a href="#generator">Generator</a>
+    </div>
+  </nav>
 
-<section class="hero">
-  <h1>MAHAKAM</h1>
-  <p>bukan sekadar kelas.</p>
+  <!-- ─── Hero ─── -->
+  <section class="hero">
+    <div class="hero-content">
+      <p class="hero-eyebrow">Angkatan XVI · Kelas</p>
+      <h1>Maha<em>kam</em></h1>
+      <p class="hero-sub">bukan sekadar kelas.</p>
+      <div class="spotlight-pill">
+        <span class="dot"></span>
+        Murid hari ini:&nbsp;<strong id="todayStudent">—</strong>
+      </div>
+    </div>
+    <div class="hero-scroll">Scroll</div>
+  </section>
 
-  <div class="spotlight">
-    Hari ini: <span id="todayStudent">-</span>
+  <!-- ─── Countdown ─── -->
+  <section id="countdown">
+    <div class="countdown-inner">
+      <p class="section-label">Menghitung Hari</p>
+      <h2 class="section-title">Wisuda <em>13 Mei 2026</em></h2>
+      <div class="count-grid">
+        <div class="count-card">
+          <span class="count-num" id="days">--</span>
+          <span class="count-label">Hari</span>
+        </div>
+        <div class="count-card">
+          <span class="count-num" id="hours">--</span>
+          <span class="count-label">Jam</span>
+        </div>
+        <div class="count-card">
+          <span class="count-num" id="minutes">--</span>
+          <span class="count-label">Menit</span>
+        </div>
+        <div class="count-card">
+          <span class="count-num" id="seconds">--</span>
+          <span class="count-label">Detik</span>
+        </div>
+      </div>
+      <p class="countdown-sub-text">Semangat, pejuang Mahakam! 🌿</p>
+    </div>
+  </section>
+
+  <!-- ─── Daftar Murid ─── -->
+  <section id="murid" class="section">
+    <p class="section-label">Keluarga Kita</p>
+    <h2 class="section-title">Daftar Murid <em>Mahakam</em></h2>
+    <div class="murid-grid" id="muridGrid"></div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Live Mood ─── -->
+  <section id="mood">
+    <div class="section" style="text-align:center">
+      <p class="section-label">Real-time</p>
+      <h2 class="section-title">Mood Kelas <em>Hari Ini</em></h2>
+      <div class="mood-grid">
+        <button class="mood-btn" data-mood="🔥">🔥</button>
+        <button class="mood-btn" data-mood="😂">😂</button>
+        <button class="mood-btn" data-mood="😴">😴</button>
+        <button class="mood-btn" data-mood="😎">😎</button>
+        <button class="mood-btn" data-mood="🥺">🥺</button>
+      </div>
+      <p id="topMood"></p>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ─── Generator ─── -->
+  <section id="generator" class="section">
+    <div class="gen-wrap">
+      <p class="section-label">Refleksi</p>
+      <h2 class="section-title">Kalau Mahakam <em>Adalah…</em></h2>
+      <button class="gen-btn" onclick="generateMahakam()"><span>✦ Generate ✦</span></button>
+      <p id="mahakamResult"></p>
+    </div>
+  </section>
+
+  <!-- ─── Final Message H-3 ─── -->
+  <div id="finalMessage" class="final-message">
+    💚 Tinggal hitungan hari. <span>Mahakam akan selalu hidup di ingatan.</span>
   </div>
-</section>
 
-<!-- COUNTDOWN -->
-<section class="container center">
-  <h2>Menuju Kelulusan</h2>
-  <div class="count-grid">
-    <div><span id="days">0</span><p>Hari</p></div>
-    <div><span id="hours">0</span><p>Jam</p></div>
-    <div><span id="minutes">0</span><p>Menit</p></div>
-    <div><span id="seconds">0</span><p>Detik</p></div>
+  <!-- ─── Chat ─── -->
+  <button class="chat-toggle" id="chatToggle">💬</button>
+  <div class="chat-box" id="chatBox">
+    <div class="chat-header">
+      <div>
+        <div class="chat-header-title">Chat Anonim</div>
+        <div class="chat-header-sub">Mahakam · semua terhubung</div>
+      </div>
+      <span class="chat-online"></span>
+    </div>
+    <div class="chat-messages" id="chatMessages"></div>
+    <div class="typing-bar" id="typingBar"></div>
+    <div class="chat-input">
+      <input id="chatInput" placeholder="Tulis sesuatu...">
+      <button class="chat-send-btn" id="sendBtn">➤</button>
+    </div>
   </div>
-</section>
 
-<!-- MURID -->
-<section id="murid" class="container">
-  <h2>Daftar Murid Mahakam</h2>
-  <div class="murid-grid" id="muridGrid"></div>
-</section>
+  <!-- ─── Footer ─── -->
+  <footer>
+    <p>Dibuat Dengan 💚 Untuk <strong>Mahakam · Angkatan XVI</strong></p>
+  </footer>
 
-<!-- LIVE MOOD -->
-<section class="container center">
-<h2>Mood Kelas Hari Ini</h2>
-<div class="mood-grid">
-<button data-mood="🔥">🔥</button>
-<button data-mood="😂">😂</button>
-<button data-mood="😴">😴</button>
-<button data-mood="😎">😎</button>
-</div>
-<p id="topMood"></p>
-</section>
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-<!-- GENERATOR -->
-<section class="container center">
-<h2>Kalau Mahakam Adalah…</h2>
-<button onclick="generateMahakam()">Generate</button>
-<p id="mahakamResult"></p>
-</section>
-
-<!-- FINAL MESSAGE -->
-<div id="finalMessage" class="final-message">
-💙 Tinggal hitungan hari.<br>
-Mahakam akan selalu hidup di ingatan.
-</div>
-
-<!-- CHAT -->
-<div class="chat-toggle" id="chatToggle">💬</div>
-<div class="chat-box" id="chatBox">
-  <div class="chat-header">Chat Anonim</div>
-  <div class="chat-messages" id="chatMessages"></div>
-  <div class="typing" id="typing"></div>
-  <div class="chat-input">
-    <input id="chatInput" placeholder="Ketik pesan...">
-    <button id="sendBtn">Kirim</button>
-  </div>
-</div>
-
-<!-- FIREBASE -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-
-<script src="firebase.js"></script>
-<script src="features.js"></script>
-<script src="chat.js"></script>
+  <!-- App (merged) -->
+  <script src="app.js"></script>
 
 </body>
 </html>
