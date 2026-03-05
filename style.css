@@ -158,7 +158,6 @@ body {
 .hero h1 em {
   font-style: italic;
   color: var(--coral);
-  display: block;
 }
 
 .hero-sub {
